@@ -18,8 +18,7 @@
         <div class="col-md-4 stretch-card grid-margin">
             <div class="card bg-gradient-danger card-img-holder text-white">
                 <div class="card-body">
-                    <img src="<?php echo URLROOT; ?>/public/theme/images/dashboard/circle.svg" class="card-img-absolute"
-                        alt="circle-image" />
+
                     <h4 class="font-weight-normal mb-3">Weekly Sales <i
                             class="mdi mdi-chart-line mdi-24px float-right"></i>
                     </h4>
@@ -31,8 +30,7 @@
         <div class="col-md-4 stretch-card grid-margin">
             <div class="card bg-gradient-info card-img-holder text-white">
                 <div class="card-body">
-                    <img src="<?php echo URLROOT; ?>/public/theme/images/dashboard/circle.svg" class="card-img-absolute"
-                        alt="circle-image" />
+
                     <h4 class="font-weight-normal mb-3">Weekly Income <i
                             class="mdi mdi-cash-multiple mdi-24px float-right"></i>
                     </h4>
@@ -44,8 +42,7 @@
         <div class="col-md-4 stretch-card grid-margin">
             <div class="card bg-gradient-success card-img-holder text-white">
                 <div class="card-body">
-                    <img src="<?php echo URLROOT; ?>/public/theme/images/dashboard/circle.svg" class="card-img-absolute"
-                        alt="circle-image" />
+
                     <h4 class="font-weight-normal mb-3">Current Gross <i
                             class="mdi mdi-cash-usd mdi-24px float-right"></i>
                     </h4>
@@ -59,8 +56,7 @@
         <div class="col-md-4 stretch-card grid-margin">
             <div class="card bg-gradient-danger card-img-holder text-white">
                 <div class="card-body">
-                    <img src="<?php echo URLROOT; ?>/public/theme/images/dashboard/circle.svg" class="card-img-absolute"
-                        alt="circle-image" />
+
                     <h4 class="font-weight-normal mb-3">Total Items Sold <i
                             class="mdi mdi-layers mdi-24px float-right"></i>
                     </h4>
@@ -71,8 +67,7 @@
         <div class="col-md-4 stretch-card grid-margin">
             <div class="card bg-gradient-info card-img-holder text-white">
                 <div class="card-body">
-                    <img src="<?php echo URLROOT; ?>/public/theme/images/dashboard/circle.svg" class="card-img-absolute"
-                        alt="circle-image" />
+
                     <h4 class="font-weight-normal mb-3">Items In Stock <i
                             class="mdi mdi-scale-balance mdi-24px float-right"></i>
                     </h4>
@@ -83,8 +78,7 @@
         <div class="col-md-4 stretch-card grid-margin">
             <div class="card bg-gradient-info card-img-holder text-white">
                 <div class="card-body">
-                    <img src="<?php echo URLROOT; ?>/public/theme/images/dashboard/circle.svg" class="card-img-absolute"
-                        alt="circle-image" />
+
                     <h4 class="font-weight-normal mb-3">Average daily Income <i
                             class="mdi mdi-cash-100 mdi-24px float-right"></i>
                     </h4>

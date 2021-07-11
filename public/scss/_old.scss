@@ -706,8 +706,6 @@ svg {
 }
 
 .addItem main {
-  background-color: #f9f9f9;
-  font-family: "Raleway";
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -877,70 +875,6 @@ svg {
   width: 40%;
 }
 
-/*modal*/
-.modal-window {
-  position: fixed;
-  background-color: rgba(255, 255, 255, 0.25);
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 999;
-  visibility: visible;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.3s;
-  &:target {
-    visibility: visible;
-    opacity: 1;
-    pointer-events: auto;
-  }
-  & > div {
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 5rem;
-    overflow-y: scroll;
-    background: rgb(39, 39, 39);
-  }
-  header {
-    font-weight: bold;
-  }
-  h1 {
-    font-size: 150%;
-    margin: 0 0 15px;
-  }
-}
-
-.modal-close {
-  color: #fff;
-  line-height: 50px;
-  font-size: 80%;
-  position: absolute;
-  float: right;
-  text-align: center;
-  top: 0;
-  width: 70px;
-  text-decoration: none;
-}
-
-.modal-close:hover {
-  color: #fff !important;
-}
-
-.modal-window {
-  & > div {
-    border-radius: 1rem;
-  }
-}
-
-.modal-window div:not(:last-of-type) {
-  margin-bottom: 15px;
-}
-
 small {
   color: lightgray;
 }
@@ -1075,25 +1009,6 @@ small {
 
 .table-box th {
   border-bottom: 1px solid #ddd;
-  position: relative;
-}
-
-input[type="search"] {
-  margin: 0 0 12px 0;
-  width: 50%;
-  border: 1px solid #bababa;
-}
-input[type="search"]:focus {
-  border-color: #009c7c;
-  background: #fff;
-  color: #5d5d5d;
-  box-shadow: 0 1px 1px rgba(60, 140, 210, 0.075) inset,
-    0 0 8px rgba(82, 168, 236, 0.6);
-}
-
-.input-group {
-  border-collapse: separate;
-  display: table;
   position: relative;
 }
 
@@ -1270,10 +1185,6 @@ input[type="search"]:focus {
   .table-box th:first-child {
     padding-left: 10px;
   }
-}
-
-.modal-window td {
-  color: #111;
 }
 
 .total-sales-out-cash,
@@ -2589,10 +2500,6 @@ input:checked + .slider:before {
   padding: 0;
 }
 
-.list {
-  padding: 2rem;
-}
-
 #carousel-btns {
   display: flex;
   justify-content: center;
@@ -2860,133 +2767,95 @@ input:checked + .slider:before {
   font-weight: bold;
 }
 
-/* Absolute Center Spinner */
+// Define vars we'll be using
+$brand-success: #5cb85c;
+$loader-size: 7em;
+$check-height: $loader-size/2;
+$check-width: $check-height/2;
+$check-left: ($loader-size/6 + $loader-size/12);
+$check-thickness: 3px;
+$check-color: $brand-success;
 
-#innermost {
-  width: 35px !important;
-  height: 35px !important;
-  top: -155px;
+.circle-loader {
+  margin-bottom: 1.5em;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-left-color: #5cb85c;
+  -webkit-animation: loader-spin 1.2s infinite linear;
+  animation: loader-spin 1.2s infinite linear;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 50%;
+  width: 4em;
+  height: 4em;
 }
 
-@keyframes spin {
+.load-complete {
+  -webkit-animation: none;
+  animation: none;
+  border-color: $check-color;
+  transition: border 500ms ease-out;
+}
+
+.checkmark {
+  display: none;
+
+  &.draw:after {
+    animation-duration: 800ms;
+    animation-timing-function: ease;
+    animation-name: checkmark;
+    transform: scaleX(-1) rotate(135deg);
+  }
+
+  &:after {
+    opacity: 1;
+    height: $check-height;
+    width: $check-width;
+    transform-origin: left top;
+    border-right: $check-thickness solid $check-color;
+    border-top: $check-thickness solid $check-color;
+    content: "";
+    left: $check-left;
+    top: $check-height;
+    position: absolute;
+  }
+}
+
+@keyframes loader-spin {
   0% {
-    -o-transform: rotate(0deg);
-  }
-  20% {
-    -o-transform: rotate(-50deg);
-  }
-  80% {
-    -o-transform: rotate(780deg);
+    transform: rotate(0deg);
   }
   100% {
-    -o-transform: rotate(720deg);
-  }
-}
-@keyframes spinoff {
-  0% {
-    -o-transform: rotate(0deg);
-  }
-  100% {
-    -o-transform: rotate(-360deg);
+    transform: rotate(360deg);
   }
 }
 
-@keyframes spinnertext-opacity {
+@keyframes checkmark {
   0% {
-    opacity: 0;
+    height: 0;
+    width: 0;
+    opacity: 1;
   }
   20% {
-    opacity: 0;
+    height: 0;
+    width: $check-width;
+    opacity: 1;
   }
-  50% {
+  40% {
+    height: $check-height;
+    width: $check-width;
     opacity: 1;
   }
   100% {
-    opacity: 0;
-  }
-}
-
-@keyframes spinnertext-opacity {
-  0% {
-    opacity: 0;
-  }
-  20% {
-    opacity: 0;
-  }
-  50% {
+    height: $check-height;
+    width: $check-width;
     opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@-ms-keyframes spinnertext-opacity {
-  0% {
-    opacity: 0;
-  }
-  20% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@-o-keyframes spinnertext-opacity {
-  0% {
-    opacity: 0;
-  }
-  20% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
   }
 }
 
 .loader {
-  position: absolute;
-  top: 58%;
-  left: 72%;
-  margin: 0 0 2em;
-  height: 100px;
-  width: 20%;
-  text-align: center;
-  padding: 1em;
-  margin: 0 auto 1em;
-  display: inline-block;
-  vertical-align: top;
   display: none;
 }
-
-/*
-  Set the color of the icon
-*/
-svg path,
-svg rect {
-  fill: #ff6700;
-}
-
-/* Preloader */
-
-#preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #fff;
-  z-index: 99;
-  display: none;
-}
-
 #status {
   width: 200px;
   height: 200px;

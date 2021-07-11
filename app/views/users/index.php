@@ -14,7 +14,7 @@
                 <p class="message">wrong place? <a href="#" title="back to login">back</a></p>
             </form>
             <form action="<?php echo URLROOT; ?>/users/login" method="POST" class="login-form">
-                <i class="mdi mdi-lock"></i>
+                <i class="mdi mdi-lock icon-lg"></i>
                 <p class="login-err"><?php echo isset($data['err']) ? $data['err'] : ''; ?></p>
                 <input name="username" type="text" placeholder="username" required
                     value="<?php echo isset($data['username']) ? $data['username'] : ''; ?>" />

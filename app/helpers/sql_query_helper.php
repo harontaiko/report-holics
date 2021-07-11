@@ -3519,7 +3519,7 @@ function getCashoutTotal($shopname, $db)
 
     $rowItem = $row->fetch_assoc();
 
-    $count = isset($rowItem['total']) ? $rowItem['total'] : 'N/A';
+    $count = isset($rowItem['total']) ? $rowItem['total'] : 0;
   
     try {
         return $count;
@@ -3541,7 +3541,7 @@ function getCashoutTotal($shopname, $db)
 
     $rowItem = $row->fetch_assoc();
 
-    $count = isset($rowItem['total']) ? $rowItem['total'] : 'N/A';
+    $count = isset($rowItem['total']) ? $rowItem['total'] : 0;
   
     try {
         return $count;
@@ -3563,7 +3563,7 @@ function getCashoutTotal($shopname, $db)
 
     $rowItem = $row->fetch_assoc();
 
-    $count = isset($rowItem['total']) ? $rowItem['total'] : 'N/A';
+    $count = isset($rowItem['total']) ? $rowItem['total'] : 0;
   
     try {
         return $count;
@@ -3585,7 +3585,7 @@ function getCashoutTotal($shopname, $db)
 
     $rowItem = $row->fetch_assoc();
 
-    $count = isset($rowItem['total']) ? $rowItem['total'] : 'N/A';
+    $count = isset($rowItem['total']) ? $rowItem['total'] : 0;
   
     try {
         return $count;
@@ -3607,7 +3607,7 @@ function getCashoutTotal($shopname, $db)
 
     $rowItem = $row->fetch_assoc();
 
-    $count = isset($rowItem['total']) ? $rowItem['total'] : 'N/A';
+    $count = isset($rowItem['total']) ? $rowItem['total'] : 0;
   
     try {
         return $count;

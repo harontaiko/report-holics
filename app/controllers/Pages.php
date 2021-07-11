@@ -8,6 +8,27 @@ class Pages extends Controller
       $this->pageModel = $this->model('Page'); 
     }
 
+    public function dailyreport()
+    {
+      unset($_SESSION['cash']);
+      if (!isset($_SESSION["user_id"])) {
+        $data = [
+          "title" => "Daily Report",  
+        ];
+        redirect("users/index");
+      } 
+      //get all sales data
+      $net = $this->pageModel->getNetTotal();
+      
+      $db = $this->pageModel->getDatabaseConnection();
+
+      $inventoryData = $this->pageModel->getInventoryData();
+
+      $data = ['title'=>'Daily Report', "inventory" => $inventoryData, 'db'=>$db, 'net'=>$net];
+
+      $this->view('pages/dailyreport', $data);
+    }
+
     public function saveStock()
     {
       if (!isset($_SESSION["user_id"])) {
@@ -131,6 +152,27 @@ class Pages extends Controller
       $data = ['title'=>'Inventory', "inventory" => $inventoryData, 'db'=>$db, 'net'=>$net];
 
       $this->view('pages/list', $data);
+    }
+
+    public function inventory()
+    {
+      unset($_SESSION['cash']);
+      if (!isset($_SESSION["user_id"])) {
+        $data = [
+          "title" => "Daily Report",  
+        ];
+        redirect("users/index");
+      } 
+      //get all sales data
+      $net = $this->pageModel->getNetTotal();
+      
+      $db = $this->pageModel->getDatabaseConnection();
+
+      $inventoryData = $this->pageModel->getInventoryData();
+
+      $data = ['title'=>'Inventory', "inventory" => $inventoryData, 'db'=>$db, 'net'=>$net];
+
+      $this->view('pages/inventory', $data);
     }
 
     public function saveCashout()
@@ -479,7 +521,7 @@ class Pages extends Controller
           array_push($itemarray, $item);
         }
 
-        $data = ['title'=>'Edit '.empty($itemarray['0']['item_name']) ? '':$itemarray['0']['item_name'].'', "inventory" => $inventoryData, 'db'=>$db, 'id'=>htmlspecialchars($itemId), 'row'=>$itemarray];
+        $data = ['title'=>'Edit', "inventory" => $inventoryData, 'db'=>$db, 'id'=>htmlspecialchars($itemId), 'row'=>$itemarray];
 
         $this->view('pages/editInventory', $data);
       }else{
@@ -826,7 +868,7 @@ class Pages extends Controller
       $this->view('pages/total', $data);
     }
 
-    public function add()
+    public function sale()
     {
       if (!isset($_SESSION["user_id"])) {
         $data = [
@@ -875,7 +917,7 @@ class Pages extends Controller
       //add store record
       $data = ['title' => 'Add Sale Record', 'net'=>$ntarr, 'cyber'=>$cbarr, 'today'=>$today, 'ps'=>$psarr, 'movie'=>$mvarr, 'date'=>$currentdate, "inventoryAdd" => $inventoryDataAdd, "inventory" => $inventoryData, 'db'=>$db, 'db2' => $dbAdd];
 
-      $this->view('pages/add',$data);
+      $this->view('pages/sale',$data);
       
     }
 

@@ -105,7 +105,6 @@ $(document).ready(UTIL.loadEvents);
 dailyreport = {
   __dailyreport: {
     init: function _homepage() {
-
       $("#latest-record").animate({ opacity: 0 }, 1000);
       $("#latest-record").animate({ opacity: 1 }, 1000);
       sleep(4700).then(() => {
@@ -349,7 +348,9 @@ dailyreport = {
                             success: function (dataResult) {
                               if (dataResult.statusCode == 200) {
                                 //success, redirect to home page
-                                location.replace(`${hostUrl}/pages/index`);
+                                location.replace(
+                                  `${hostUrl}/pages/dailyreport`
+                                );
                               } else if (dataResult.statusCode == 317) {
                                 document.querySelector(".alert").style.display =
                                   "block";
@@ -421,7 +422,9 @@ dailyreport = {
                             success: function (dataResult) {
                               if (dataResult.statusCode == 200) {
                                 //success, redirect to home page
-                                location.replace(`${hostUrl}/pages/index`);
+                                location.replace(
+                                  `${hostUrl}/pages/dailyreport`
+                                );
                               } else if (dataResult.statusCode == 317) {
                                 document.querySelector(".alert").style.display =
                                   "block";
@@ -493,7 +496,9 @@ dailyreport = {
                             success: function (dataResult) {
                               if (dataResult.statusCode == 200) {
                                 //success, redirect to home page
-                                location.replace(`${hostUrl}/pages/index`);
+                                location.replace(
+                                  `${hostUrl}/pages/dailyreport`
+                                );
                               } else if (dataResult.statusCode == 317) {
                                 document.querySelector(".alert").style.display =
                                   "block";
@@ -565,7 +570,9 @@ dailyreport = {
                             success: function (dataResult) {
                               if (dataResult.statusCode == 200) {
                                 //success, redirect to home page
-                                location.replace(`${hostUrl}/pages/index`);
+                                location.replace(
+                                  `${hostUrl}/pages/dailyreport`
+                                );
                               } else if (dataResult.statusCode == 317) {
                                 document.querySelector(".alert").style.display =
                                   "block";
@@ -1783,7 +1790,7 @@ dailyreport = {
                       success: function (dataResult) {
                         if (dataResult.statusCode == 200) {
                           //redirect to index
-                          location.replace(`${hostUrl}/pages/index`);
+                          location.replace(`${hostUrl}/pages/dailyreport`);
                         } else if (dataResult.statusCode == 317) {
                           //not okay
                           document.querySelector(".alert").style.display =
@@ -1803,7 +1810,7 @@ dailyreport = {
                         }
                       },
                     });
-                    location.replace(`${hostUrl}/pages/index`);
+                    location.replace(`${hostUrl}/pages/dailyreport`);
                   }
                 } else if (dataResult.statusCode == 317) {
                   //status=not ok, proceed with warning, no sale
@@ -1826,7 +1833,7 @@ dailyreport = {
                       success: function (dataResult) {
                         if (dataResult.statusCode == 200) {
                           //redirect to index
-                          location.replace(`${hostUrl}/pages/index`);
+                          location.replace(`${hostUrl}/pages/dailyreport`);
                         } else if (dataResult.statusCode == 317) {
                           //not okay
                           document.querySelector(".alert").style.display =
@@ -1846,7 +1853,7 @@ dailyreport = {
                         }
                       },
                     });
-                    location.replace(`${hostUrl}/pages/index`);
+                    location.replace(`${hostUrl}/pages/dailyreport`);
                   }
                 } else if (dataResult.statusCode == 318) {
                   //status=not ok, proceed with warning, no expense
@@ -1870,7 +1877,7 @@ dailyreport = {
                       success: function (dataResult) {
                         if (dataResult.statusCode == 200) {
                           //redirect to index
-                          location.replace(`${hostUrl}/pages/index`);
+                          location.replace(`${hostUrl}/pages/dailyreport`);
                         } else if (dataResult.statusCode == 317) {
                           //not okay
                           document.querySelector(".alert").style.display =
@@ -1890,7 +1897,7 @@ dailyreport = {
                         }
                       },
                     });
-                    location.replace(`${hostUrl}/pages/index`);
+                    location.replace(`${hostUrl}/pages/dailyreport`);
                   }
                 } else if (dataResult.statusCode == 319) {
                   //status=not ok, proceed with warning, no expense and sale
@@ -1913,7 +1920,7 @@ dailyreport = {
                       success: function (dataResult) {
                         if (dataResult.statusCode == 200) {
                           //redirect to index
-                          location.replace(`${hostUrl}/pages/index`);
+                          location.replace(`${hostUrl}/pages/dailyreport`);
                         } else if (dataResult.statusCode == 317) {
                           //not okay
                           document.querySelector(".alert").style.display =
@@ -1933,7 +1940,7 @@ dailyreport = {
                         }
                       },
                     });
-                    location.replace(`${hostUrl}/pages/index`);
+                    location.replace(`${hostUrl}/pages/dailyreport`);
                   }
                 }
               },
@@ -2043,7 +2050,7 @@ dailyreport = {
                     document.getElementById("inventory-alert").innerHTML = "";
                   });
 
-                  // location.replace(`${hostUrl}/pages/index`);
+                  // location.replace(`${hostUrl}/pages/dailyreport`);
                 });
               } else if (dataResult.statusCode == 201) {
                 document.querySelector(".alert").style.display = "block";
@@ -2220,7 +2227,8 @@ dailyreport = {
   },
   __list: {
     init: function _list() {
-      $("#filter-list").on("keyup", function () {
+      FilterInventory();
+      /* $("#filter-list").on("keyup", function () {
         var value = this.value.toLowerCase().trim();
         $(".list p")
           .show()
@@ -2228,7 +2236,7 @@ dailyreport = {
             return $(this).text().toLowerCase().trim().indexOf(value) == -1;
           })
           .hide();
-      });
+      }); */
     },
   },
   __attatchReceipt: {

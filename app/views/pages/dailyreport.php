@@ -1,13 +1,13 @@
 <?php require(APPROOT . '/views/inc/header.php'); ?>
 
-<body class="cyber __cyber">
+<body class="dailyreport __dailyreport">
     <div class="container-scroller">
         <?php require(APPROOT . '/views/inc/navbar.php'); ?>
         <div class="container-fluid page-body-wrapper">
             <?php require(APPROOT . '/views/inc/sidebar.php'); ?>
 
             <div class="main-panel">
-                <?php require(APPROOT . '/views/content/cyber.php'); ?>
+                <?php require(APPROOT . '/views/content/dailyreport.php'); ?>
                 <!-- partial:partials/_footer.html -->
                 <footer class="footer">
                     <div class="container-fluid clearfix">

@@ -23,7 +23,7 @@
                             </div>
                             <div class="nav-profile-text">
                                 <p class="mb-1 text-black">
-                                    <?php echo isset($_SESSION['user_name']) ? $_SESSION['user_name'] . ' G': 'N/A'; ?>
+                                    <?php echo isset($_SESSION['user_name']) ? $_SESSION['user_name'] . ' OG': 'N/A'; ?>
                                 </p>
                             </div>
                         </a>

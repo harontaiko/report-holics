@@ -3,50 +3,49 @@
     <div class="page-header">
         <h3 class="page-title">
             <span class="page-title-icon bg-gradient-primary text-white mr-2">
-                <i class="mdi mdi-cash-multiple"></i>
-            </span> Add Sale
+                <i class="mdi mdi-pencil"></i>
+            </span> Edit Sale
         </h3>
     </div>
-
     <main>
-        <h2 id="add-title">New Record</h2>
         <form action="" method="POST" id="form-add">
+            <input type="hidden" id="recorddate"
+                value="<?php echo isset($data['recordDate']) ? $data['recordDate'] : ''; ?>">
             <input style="background: #81ec16;color: red;" type="datetime" name="date" id="date"
-                value="<?php echo isset($data['date']) ? $data['date'] : ''; ?>" readonly>
+                value="Created on:<?php echo isset($data['recordDate']) ? $data['recordDate'] : ''; ?>" readonly>
+            <div class="loader">
+                <div class="loading">
+                </div>
+            </div>
             <div class="alert alert_success" id="alert_add">
                 <p id="add-alert"></p>
             </div>
-            <input type="submit" class="save-record" value="create record">
+            <input type="submit" name="save-rec-edit" class="save-record" value="save changes">
             <div class="inner_grid">
                 <div class="income">
                     <h3>Income</h3>
                     <hr>
                     <div class="cyber-record">
                         <p>Cyber <i class="fas fa-tv"></i></p>
-                        <input type="number" name="cyber-cash"
-                            value="<?php echo empty($data['cyber'])? '':$data['cyber']['0']['cash']  ?>" id="cyber-cash"
-                            placeholder="cash" class="income-calc dr_input">
-                        <input type="number" name="cyber-till"
-                            value="<?php echo empty($data['cyber'])? '':$data['cyber']['0']['till']  ?>" id="cyber-till"
-                            placeholder="till/other" class="income-calc-till dr_input">
+                        <input type="number" name="cyber-cash" id="cyber-cash" placeholder="cash"
+                            value="<?php echo $data['cyber']['0']['cash']; ?>" class="income-calc dr_input">
+                        <input type="number" name="cyber-till" id="cyber-till"
+                            value="<?php echo $data['cyber']['0']['till']; ?>" placeholder="till/other"
+                            class="income-calc-till dr_input">
                     </div>
                     <div class="ps-record">
                         <p>Playstation <i class="fab fa-playstation"></i></p>
-                        <input type="number" name="ps-cash"
-                            value="<?php echo empty($data['ps'])? '':$data['ps']['0']['cash']  ?>" id="ps-cash"
-                            placeholder="cash" class="income-calc dr_input">
-                        <input type="number" name="ps-till"
-                            value="<?php echo empty($data['ps'])? '':$data['ps']['0']['till']  ?>" id="ps-till"
-                            placeholder="till/other" class="income-calc-till dr_input">
+                        <input type="number" name="ps-cash" id="ps-cash" placeholder="cash"
+                            value="<?php echo $data['ps']['0']['cash']; ?>" class="income-calc dr_input">
+                        <input type="number" name="ps-till" id="ps-till" placeholder="till/other"
+                            value="<?php echo $data['ps']['0']['till']; ?>" class="income-calc-till dr_input">
                     </div>
                     <div class="movie-record">
                         <p>Movie Shop<i class="fas fa-compact-disc"></i></p>
-                        <input type="number" name="movie-cash"
-                            value="<?php echo empty($data['movie'])? '':$data['movie']['0']['cash']  ?>" id="movie-cash"
-                            placeholder="cash" class="income-calc dr_input">
-                        <input type="number" name="movie-till"
-                            value="<?php echo empty($data['movie'])? '':$data['movie']['0']['till']  ?>" id="movie-till"
-                            placeholder="till/other" class="income-calc-till dr_input">
+                        <input type="number" name="movie-cash" id="movie-cash" placeholder="cash"
+                            value="<?php echo $data['movie']['0']['cash']; ?>" class="income-calc dr_input">
+                        <input type="number" name="movie-till" id="movie-till" placeholder="till/other"
+                            value="<?php echo $data['movie']['0']['till']; ?>" class="income-calc-till dr_input">
                     </div>
                 </div>
                 <div class="total">
@@ -55,18 +54,14 @@
                     <div class="total-record">
                         <p>Net total(excluding sales and expenses)<i class="fas fa-layer-group"></i></p>
                         <input type="number" style="background:aliceblue;" readonly name="total-cash"
-                            value="<?php echo empty($data['net'])? '':$data['net']['0']['cash_sales']  ?>"
-                            placeholder="Total cash" class="dr_input" id="total-cash">
+                            value="<?php echo $data['netvals']['0']['cash_sales']; ?>" placeholder="Total cash"
+                            class="dr_input" id="total-cash">
                         <input type="number" style="background:aliceblue;" readonly name="total-till"
-                            value="<?php echo empty($data['net'])? '':$data['net']['0']['till_sales']  ?>"
-                            placeholder="till/other" class="dr_input" id="total-till">
-                        <p class="total-sales-out-cash" id="total-sales-out-cash">cash total:
-                            <?php echo empty($data['net'])? '':number_format($data['net']['0']['cash_sales'])  ?></p>
-                        <p class="total-sales-out-till" id="total-sales-out-till">till total:
-                            <?php echo empty($data['net'])? '':number_format($data['net']['0']['till_sales']);  ?></p>
-                        <p class="total-sales-out-net" id="total-sales-out-net">net
-                            total:<?php echo empty($data['net'])? '':number_format($data['net']['0']['totalincome']);  ?>
-                        </p>
+                            value="<?php echo $data['netvals']['0']['till_sales']; ?>" placeholder="till/other"
+                            class="dr_input" id="total-till">
+                        <p class="total-sales-out-cash" id="total-sales-out-cash"></p>
+                        <p class="total-sales-out-till" id="total-sales-out-till"></p>
+                        <p class="total-sales-out-net" id="total-sales-out-net"></p>
                     </div>
                 </div>
                 <div class="sales">
@@ -77,6 +72,7 @@
                             <p>Product Sales <i class="fa fa-cash-register"></i></p>
                             <div id="sc">
                             </div>
+                            <p id="sales-made-p">Today's Sales</p>
                             <div id="sl">
                             </div>
                             <select name="product" id="product" class="dr_input">
@@ -102,9 +98,9 @@
                 <div class="expenses">
                     <h3>Expenses</h3>
                     <hr>
-
                     <div class="expenses-record">
                         <p>Expenses <i class="fas fa-money-bill-alt"></i></p>
+                        <p id="sales-made-p">Today's Expenses</p>
                         <div id="exp">
                         </div>
                         <input type="text" placeholder="expense (description)" id="expense_n" name="expense-name"
@@ -118,5 +114,4 @@
         </form>
 
     </main>
-
 </div>

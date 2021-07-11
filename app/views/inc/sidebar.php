@@ -10,7 +10,7 @@
                             </div>
                             <div class="nav-profile-text d-flex flex-column">
                                 <span
-                                    class="font-weight-bold mb-2"><?php echo isset($_SESSION['user_name']) ? $_SESSION['user_name'] . ' G': 'N/A'; ?></span>
+                                    class="font-weight-bold mb-2"><?php echo isset($_SESSION['user_name']) ? $_SESSION['user_name'] . ' OG': 'N/A'; ?></span>
                                 <span class="text-secondary text-small">admin</span>
                             </div>
                             <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
@@ -41,7 +41,7 @@
                                 <li class="nav-item"> <a class="nav-link"
                                         href="<?php echo URLROOT; ?>/pages/sales">Sales</a></li>
                                 <li class="nav-item"> <a class="nav-link"
-                                        href="<?php echo URLROOT; ?>/pages/sales">Total</a></li>
+                                        href="<?php echo URLROOT; ?>/pages/total">Total</a></li>
                                 <li class="nav-item"> <a class="nav-link"
                                         href="<?php echo URLROOT; ?>/pages/dailyreport">dailyreport</a></li>
                             </ul>
@@ -57,16 +57,16 @@
                         <div class="collapse" id="reports">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link"
-                                        href="<?php echo URLROOT; ?>/pages/playstationReport">Ps</a>
+                                        href="<?php echo URLROOT; ?>/pages/psReport">Ps</a>
                                 </li>
                                 <li class="nav-item"> <a class="nav-link"
-                                        href="<?php echo URLROOT; ?>/pages/movieShopReport">MovieShop</a></li>
+                                        href="<?php echo URLROOT; ?>/pages/mvReport">MovieShop</a></li>
                                 <li class="nav-item"> <a class="nav-link"
-                                        href="<?php echo URLROOT; ?>/pages/cyberReport">Cyber</a></li>
+                                        href="<?php echo URLROOT; ?>/pages/cbReport">Cyber</a></li>
                                 <li class="nav-item"> <a class="nav-link"
-                                        href="<?php echo URLROOT; ?>/pages/expenseReport">Expenses</a></li>
+                                        href="<?php echo URLROOT; ?>/pages/expReport">Expenses</a></li>
                                 <li class="nav-item"> <a class="nav-link"
-                                        href="<?php echo URLROOT; ?>/pages/netReport">Net</a></li>
+                                        href="<?php echo URLROOT; ?>/pages/ntReport">Net</a></li>
                             </ul>
                         </div>
                     </li>
@@ -81,7 +81,7 @@
                         <div class="collapse" id="inventory">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link" href="<?php echo URLROOT; ?>/pages/addItem">
-                                        Add
+                                        Create
                                         New</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="<?php echo URLROOT; ?>/pages/list"> list
                                     </a>
@@ -117,7 +117,7 @@
                             <div class="border-bottom">
                                 <h6 class="font-weight-normal mb-3">Sale</h6>
                             </div>
-                            <a href="<?php echo URLROOT; ?>/pages/add"
+                            <a href="<?php echo URLROOT; ?>/pages/sale"
                                 class="btn btn-block btn-lg btn-gradient-primary mt-4">+ Add Sale</a>
 
                         </span>
