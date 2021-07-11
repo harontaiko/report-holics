@@ -1,0 +1,7 @@
+expense_id, expense_item, expense_cost, date_created, time_created, created_by, creator_ip
+sales_id, sales_item, buying_price, selling_price, cash, till, profit, date_created, time_created, created_by, creator_ip
+sales_id, total_sales, totalprofit, totalincome, totalexpense, cash_sales, till_sales, date_created, time_created, created_by, creator_ip
+cash_id, cash_amount, cash_usage, cash_from, cash_handler, cash_receipt_number, date_created
+user_id, username, email, password, is_admin, date_created, time_created, created_by, creator_ip
+user_id, login_count, is_admin, date_logged, time_logged, user_ip
+item_id, item_name, item_quantity, item_buying, item_model, image, date_created, time_created, created_by, edited_by, creator_ip
