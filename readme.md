@@ -18,3 +18,5 @@ Inventory management and daily record keeping system, built on PHP OOP and Js, D
 #### To do
 
 - create user, some few links , profile & notifications
+
+- fetch helper, image holder

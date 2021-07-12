@@ -137,7 +137,8 @@
                                     <td><strong><?php echo 'Ksh '.$x['profit'] ?></strong></td>
                                     <td>
                                         <img src="<?php echo URLROOT; ?>/public/images/images/avatar.png" class="mr-2"
-                                            alt="image"> David Grey
+                                            alt="image">
+                                        <?php echo isset($_SESSION['user_name']) ? $_SESSION['user_name'] . ' OG': 'N/A'; ?>
                                     </td>
                                     <td> <a
                                             href="<?php echo URLROOT; ?>/pages/invoice/sale/<?php echo $x['sales_id']; ?>">invoice</a>
