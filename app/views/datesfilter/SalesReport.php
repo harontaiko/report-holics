@@ -1,7 +1,5 @@
 <div class="filtered-repo" id="cyber-filtered-repo">
-    <button class="previous-report" onclick="location.replace(`<?php echo URLROOT; ?>/pages/sales`);" title="back"><i
-            title="back" class="fas fa-arrow-left"></i></button>
-    <button title="print report" type="button" id="custom-print-report"
+    <button title="print report" class="btn btn-gradient-success" type="button" id="custom-print-report"
         onClick="printJS({ printable: 'cyber-filtered-repo', type: 'html', style: 'h1{font-size:1.25rem;} #custom-print-report{display:none} .previous-report{display:none;} .container-out-report td:nth-child(2){border-color: #f1f1f1; border-right: 1px solid #ddd;background: white;}.container-out-report td:nth-child(1){border-color: #f1f1f1; border-right: 1px solid #ddd;background: white;}.container-out-report td:nth-child(2){border-color: #f1f1f1; border-right: 1px solid #ddd;background: white;}.container-out-report td:nth-child(3){border-color: #f1f1f1; border-right: 1px solid #ddd;background: white;}.container-out-report td:nth-child(2){border-color: #f1f1f1; border-right: 1px solid #ddd;background: white;}.container-out-report td:nth-child(4){border-color: #f1f1f1; border-right: 1px solid #ddd;background: white;}.container-out-report td:nth-child(5){border-color: #f1f1f1; border-right: 1px solid #ddd;background: white;} .container-out-report tr:nth-child(1){border-color: #f1f1f1; border-bottom: 1px solid #ddd;background: white;}'})">
         <i class=" fas fa-print"></i>
     </button>
@@ -9,7 +7,7 @@
             <?php echo $data['to']; ?></span>
     </h1>
 
-    <table class="responstable" id="responstable">
+    <table class="responstable table table-hover table-bordered" id="responstable">
 
         <tr>
             <th>Date</th>

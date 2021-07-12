@@ -23,7 +23,7 @@
                             class="mdi mdi-chart-line mdi-24px float-right"></i>
                     </h4>
                     <h2 class="mb-5">Ksh <?php echo number_format(getSalesTotalWeek($data['db'])); ?></h2>
-                    <h6 class="card-text">Increased by 60%</h6>
+                    <!-- <h6 class="card-text">Increased by 60%</h6> -->
                 </div>
             </div>
         </div>
@@ -35,7 +35,7 @@
                             class="mdi mdi-cash-multiple mdi-24px float-right"></i>
                     </h4>
                     <h2 class="mb-5">Ksh <?php echo number_format(getNetTotalWeek($data['db'])); ?></h2>
-                    <h6 class="card-text">Decreased by 10%</h6>
+                    <!-- <h6 class="card-text">Decreased by 10%</h6> -->
                 </div>
             </div>
         </div>
@@ -47,7 +47,7 @@
                             class="mdi mdi-cash-usd mdi-24px float-right"></i>
                     </h4>
                     <h2 class="mb-5">Ksh <?php echo number_format(getNetTotalYear($data['db'])); ?></h2>
-                    <h6 class="card-text">Increased by 5%</h6>
+                    <!-- <h6 class="card-text">Increased by 5%</h6> -->
                 </div>
             </div>
         </div>
@@ -157,8 +157,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Admins</h4>
                     <div class="text-right">
-                        <a href="<?php echo URLROOT; ?>/users/createUser"
-                            class="text-right btn btn-lg btn-gradient-success">create user</a>
+                        <a href="#!" class="text-right btn btn-lg btn-gradient-success">create user</a>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped">

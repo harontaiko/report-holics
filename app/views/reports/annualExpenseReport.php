@@ -1,13 +1,11 @@
 <section id="reports-tbl">
-    <button class="previous-report" onclick="location.replace(`<?php echo URLROOT; ?>/pages/expenses`);" title="back"><i
-            title="back" class="fas fa-arrow-left"></i></button>
-    <button title="print report" type="button" id="custom-print-report"
+    <button title="print report" class="btn btn-gradient-success" type="button" id="custom-print-report"
         onClick="printJS({ printable: 'container-out-report2', type: 'html', style: '.container-out-report td:nth-child(2){border-color: #f1f1f1; border-right: 1px solid #ddd;background: white;}.container-out-report td:nth-child(1){border-color: #f1f1f1; border-right: 1px solid #ddd;background: white;}.container-out-report td:nth-child(2){border-color: #f1f1f1; border-right: 1px solid #ddd;background: white;}.container-out-report td:nth-child(3){border-color: #f1f1f1; border-right: 1px solid #ddd;background: white;}.container-out-report td:nth-child(2){border-color: #f1f1f1; border-right: 1px solid #ddd;background: white;}.container-out-report td:nth-child(4){border-color: #f1f1f1; border-right: 1px solid #ddd;background: white;}.container-out-report td:nth-child(5){border-color: #f1f1f1; border-right: 1px solid #ddd;background: white;} .container-out-report tr:nth-child(1){border-color: #f1f1f1; border-bottom: 1px solid #ddd;background: white;}'})">
         <i class=" fas fa-print"></i>
     </button>
     <h1 id="report-title">Annual Expenses <span>Report</span></h1>
 
-    <table class="responstable" id="responstable">
+    <table class="responstable table table-striped mb-4" id="responstable">
 
         <tr>
             <th>Year</th>
@@ -56,7 +54,6 @@
         <?php endwhile; ?>
         <tfoot>
             <tr>
-                <td></td>
                 <td></td>
                 <td></td>
                 <td>Annual total: <?php

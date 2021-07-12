@@ -1,13 +1,11 @@
 <section id="reports-tbl">
-    <button class="previous-report" onclick="location.replace(`<?php echo URLROOT; ?>/pages/total`);" title="back"><i
-            title="back" class="fas fa-arrow-left"></i></button>
-    <button title="print report" type="button" id="custom-print-report"
+    <button title="print report" type="button" class="btn btn-gradient-success" id="custom-print-report"
         onClick="printJS({ printable: 'container-out-report2', type: 'html', style: '.container-out-report td:nth-child(2){border-color: #f1f1f1; border-right: 1px solid #ddd;background: white;}.container-out-report td:nth-child(1){border-color: #f1f1f1; border-right: 1px solid #ddd;background: white;}.container-out-report td:nth-child(2){border-color: #f1f1f1; border-right: 1px solid #ddd;background: white;}.container-out-report td:nth-child(3){border-color: #f1f1f1; border-right: 1px solid #ddd;background: white;}.container-out-report td:nth-child(2){border-color: #f1f1f1; border-right: 1px solid #ddd;background: white;}.container-out-report td:nth-child(4){border-color: #f1f1f1; border-right: 1px solid #ddd;background: white;}.container-out-report td:nth-child(5){border-color: #f1f1f1; border-right: 1px solid #ddd;background: white;} .container-out-report tr:nth-child(1){border-color: #f1f1f1; border-bottom: 1px solid #ddd;background: white;}'})">
         <i class=" fas fa-print"></i>
     </button>
     <h1 id="report-title">Annual Net <span>Report</span></h1>
 
-    <table class="responstable" id="responstable">
+    <table class="responstable table table-striped mb-4" id="responstable">
 
         <tr>
             <th>Year</th>
@@ -35,7 +33,7 @@
 </section>
 <div class="container-out-report" id="container-out-report2">
 
-    <table>
+    <table class="table table-striped">
         <h1 id="report-title">Annual Net <span>Report</span></h1>
         <tr>
             <th>Year</th>
@@ -70,17 +68,31 @@
         </tfoot>
     </table>
 
-    <section id="realtime-charts">
-        <div class="line-chart-report">
-            <canvas id="line-month-chart-repo-mv" style="height:380px; width:420px"></canvas>
+    <div class="row">
+        <div class="col-md-4 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <canvas id="line-month-chart-repo-mv" class="mt-4" style="height:380px; width:420px"></canvas>
+                </div>
+            </div>
         </div>
-        <div class="bar-chart-report">
-            <canvas id="bar-month-chart-repo-mv" style="height:380px; width:420px"></canvas>
+        <div class="col-md-4 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title"></h4>
+                    <canvas id="bar-month-chart-repo-mv" style="height:380px; width:420px"></canvas>
+                </div>
+            </div>
         </div>
-        <div class="pie-chart-report">
-            <canvas id="pie-month-chart-repo-mv" style="height:380px; width:420px"></canvas>
+        <div class="col-md-4 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title"></h4>
+                    <canvas id="pie-month-chart-repo-mv" style="height:380px; width:420px"></canvas>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
 </div>
 <!--line chart daily movie report-->
 <script>

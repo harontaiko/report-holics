@@ -28,7 +28,7 @@
                             </div>
                         </a>
                         <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                            <a class="dropdown-item" href="<?php echo URLROOT; ?>/users/profile">
+                            <a class="dropdown-item" href="#!">
                                 <i class="mdi mdi-account mr-2 text-success"></i> profile </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="<?php echo URLROOT; ?>/users/logout">

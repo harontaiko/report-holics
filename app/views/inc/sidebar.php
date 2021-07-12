@@ -2,7 +2,7 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item nav-profile">
-                        <a href="<?php echo URLROOT; ?>/users/profile" class="nav-link">
+                        <a href="#!" class="nav-link">
                             <div class="nav-profile-image">
                                 <img src="<?php echo URLROOT; ?>/public/images/images/avatar.png" alt="profile">
                                 <span class="login-status online"></span>
@@ -41,6 +41,8 @@
                                 <li class="nav-item"> <a class="nav-link"
                                         href="<?php echo URLROOT; ?>/pages/sales">Sales</a></li>
                                 <li class="nav-item"> <a class="nav-link"
+                                        href="<?php echo URLROOT; ?>/pages/expenses">Expenses</a></li>
+                                <li class="nav-item"> <a class="nav-link"
                                         href="<?php echo URLROOT; ?>/pages/total">Total</a></li>
                                 <li class="nav-item"> <a class="nav-link"
                                         href="<?php echo URLROOT; ?>/pages/dailyreport">dailyreport</a></li>
@@ -48,27 +50,10 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="collapse" href="#reports" aria-expanded="false"
-                            aria-controls="reports">
-                            <span class="menu-title">Reports</span>
-                            <i class="menu-arrow"></i>
-                            <i class="mdi mdi-trending-up menu-icon"></i>
+                        <a class="nav-link" href="<?php echo URLROOT; ?>/pages/trends">
+                            <span class="menu-title">Trends</span>
+                            <i class="mdi mdi-chart-areaspline menu-icon"></i>
                         </a>
-                        <div class="collapse" id="reports">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link"
-                                        href="<?php echo URLROOT; ?>/pages/psReport">Ps</a>
-                                </li>
-                                <li class="nav-item"> <a class="nav-link"
-                                        href="<?php echo URLROOT; ?>/pages/mvReport">MovieShop</a></li>
-                                <li class="nav-item"> <a class="nav-link"
-                                        href="<?php echo URLROOT; ?>/pages/cbReport">Cyber</a></li>
-                                <li class="nav-item"> <a class="nav-link"
-                                        href="<?php echo URLROOT; ?>/pages/expReport">Expenses</a></li>
-                                <li class="nav-item"> <a class="nav-link"
-                                        href="<?php echo URLROOT; ?>/pages/ntReport">Net</a></li>
-                            </ul>
-                        </div>
                     </li>
 
                     <li class="nav-item">
@@ -98,9 +83,9 @@
                         </a>
                         <div class="collapse" id="receipts">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="<?php echo URLROOT; ?>/pages/invoices">
+                                <li class="nav-item"> <a class="nav-link" href="#!">
                                         Invoices</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="<?php echo URLROOT; ?>/pages/cashouts">
+                                <li class="nav-item"> <a class="nav-link" href="#!">
                                         cashouts </a>
                                 </li>
                             </ul>
