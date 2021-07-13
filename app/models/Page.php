@@ -277,6 +277,77 @@ class Page
         }
     }
 
+    public function DeleteRecordAll($data)
+    {
+        $check = 'SELECT `password` FROM dr_user WHERE `user_id` = ?';
+
+        $hold = "s";
+
+        $val = array($data['user']);
+
+        $result = SelectCond($check, $hold, $val, $this->db);
+
+        $row = $result->get_result();
+
+        $rowItem = $row->fetch_assoc();
+        
+        $password = isset($rowItem['password']) ? $rowItem['password'] : '';
+
+        $password_check = password_verify($data['password'], $password);
+
+        if($password_check === false)
+        {
+            return 0;
+        }
+        else if($password_check === true)
+        {
+            //delete record across all tables
+            $query = 'DELETE FROM dr_nettotal WHERE sales_id=?';
+
+            $binders = "s";
+    
+            $parameters = array($data['id']);
+            
+            $querym = 'DELETE FROM dr_movieshop WHERE date_created=?';
+
+            $bindersm = "s";
+    
+            $parametersdate = array($data['date']);
+
+            $queryp = 'DELETE FROM dr_playstation WHERE date_created=?';
+
+            $bindersp = "s";
+
+            $queryc = 'DELETE FROM dr_cybershop WHERE date_created=?';
+
+            $bindersc = "s";
+
+            $queryexp = 'DELETE FROM dr_expenses WHERE date_created=?';
+
+            $bindersexp = "s";
+
+            $querys = 'DELETE FROM dr_sales WHERE date_created=?';
+
+            $binderss = "s";
+  
+            try {
+                Delete($query, $binders, $parameters, 'dr_nettotal', $this->db);
+                Delete($querym, $bindersm, $parametersdate, 'dr_movieshop', $this->db);
+                Delete($queryp, $bindersp, $parametersdate, 'dr_playstation', $this->db);
+                Delete($queryc, $bindersc, $parametersdate, 'dr_cybershop', $this->db);
+                Delete($queryexp, $bindersexp, $parametersdate, 'dr_expenses', $this->db);
+                Delete($querys, $binderss, $parametersdate, 'dr_sales', $this->db);
+                return true;
+            } catch (Error $e) {
+                return false;
+            }
+        }
+        else{
+            return 0;
+        }
+
+    }
+
     public function DeleteItem($id)
     {
         $query = 'DELETE FROM dr_inventory WHERE item_id=?';
@@ -1530,6 +1601,52 @@ class Page
 
         try {
             return $row;
+        } catch (Error $e) {
+            return false;
+        }
+    }
+
+    public function getRecordById($id)
+    {
+        $query = 'SELECT sales_id, date_created FROM dr_nettotal WHERE sales_id = ?';
+
+        $binders = "s";
+
+        $parameters = array($id);
+
+        $result = SelectCond($query, $binders, $parameters, $this->db);
+
+        $row = $result->get_result();
+
+        $rowItem = $row->fetch_assoc();
+        
+        $count = isset($rowItem['sales_id']) ? $rowItem['sales_id'] : 'id:not found';
+
+        try {
+            return $count;
+        } catch (Error $e) {
+            return false;
+        }
+    }
+
+    public function getRecordDateById($id)
+    {
+        $query = 'SELECT date_created FROM dr_nettotal WHERE sales_id = ?';
+
+        $binders = "s";
+
+        $parameters = array($id);
+
+        $result = SelectCond($query, $binders, $parameters, $this->db);
+
+        $row = $result->get_result();
+
+        $rowItem = $row->fetch_assoc();
+        
+        $date = isset($rowItem['date_created']) ? $rowItem['date_created'] : 'id:not found';
+
+        try {
+            return $date;
         } catch (Error $e) {
             return false;
         }

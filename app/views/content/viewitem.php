@@ -10,6 +10,20 @@
     </div>
     <?php if(getInventoryItemById($data['id'], $data['db'])): ?>
     <div class="wrapper">
+        <nav id="carousel-btns">
+            <?php if($data['id'] == $data['first']): ?>
+            <a class="cr-link" href="#!"><button disabled class="nav prev">Prev</button></a>
+            <?php else: ?>
+            <a class="cr-link" href="<?php echo URLROOT; ?>/pages/viewItem/<?php echo $data['prev']; ?>"><button
+                    class="nav prev">Prev</button></a>
+            <?php endif; ?>
+            <?php if($data['id'] == $data['last']): ?>
+            <a class="cr-link" href="#!" title="the end"><button disabled class="nav next">Next</button></a>
+            <?php else: ?>
+            <a class="cr-link" href="<?php echo URLROOT; ?>/pages/viewItem/<?php echo $data['next']; ?>"><button
+                    class="nav next">Next</button></a>
+            <?php endif; ?>
+        </nav>
         <h1><?php print_r($data['row']['0']['item_name']); ?> -
             <strong><?php echo number_format($data['row']['0']['item_buying']); ?>/=</strong>
         </h1>
@@ -18,11 +32,11 @@
                 inventory item</a>
         </p>
         <?php if(empty($data['row']['0']['image'])): ?>
-        <img style="display:none; width:60% !important; height:auto !important; background-color:teal;" loading="lazy"
-            src="<?php echo URLROOT; ?>/public/images/images/placeholder.png" id="item-image"
-            alt="no image for <?php print_r($data['row']['0']['item_name']); ?>">
+        <img style="width:30% !important; height:auto !important; " loading="lazy"
+            src="https://plchldr.co/i/150x150?&bg=ccc&fc=fff&text=<?php print_r($data['row']['0']['item_name']); ?>"
+            id="item-image" alt="no image for <?php print_r($data['row']['0']['item_name']); ?>">
         <?php else: ?>
-        <img style="display:none;background-color:teal;" loading="lazy"
+        <img style="width:50%; " loading="lazy"
             src="<?php echo URLROOT; ?>/public/uploads/<?php print_r($data['row']['0']['image']); ?>" id="item-image"
             alt="<?php print_r($data['row']['0']['image']); ?>">
         <?php endif; ?>
@@ -38,20 +52,6 @@
             ?>
             </h2>
         </div>
-        <nav id="carousel-btns">
-            <?php if($data['id'] == $data['first']): ?>
-            <a class="cr-link" href="#!"><button disabled class="nav prev">Prev</button></a>
-            <?php else: ?>
-            <a class="cr-link" href="<?php echo URLROOT; ?>/pages/viewItem/<?php echo $data['prev']; ?>"><button
-                    class="nav prev">Prev</button></a>
-            <?php endif; ?>
-            <?php if($data['id'] == $data['last']): ?>
-            <a class="cr-link" href="#!" title="the end"><button disabled class="nav next">Next</button></a>
-            <?php else: ?>
-            <a class="cr-link" href="<?php echo URLROOT; ?>/pages/viewItem/<?php echo $data['next']; ?>"><button
-                    class="nav next">Next</button></a>
-            <?php endif; ?>
-        </nav>
     </div>
     <?php else: ?>
     <div class="box">

@@ -2,7 +2,7 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item nav-profile">
-                        <a href="#!" class="nav-link">
+                        <a href="<?php echo URLROOT; ?>/users/profile" class="nav-link">
                             <div class="nav-profile-image">
                                 <img src="<?php echo URLROOT; ?>/public/images/images/avatar.png" alt="profile">
                                 <span class="login-status online"></span>

@@ -22,6 +22,23 @@ class Users extends Controller
       $this->view('users/index', $data);
     }
 
+    public function profile()
+    {
+      if($this->isLoggedIn())
+      {
+        $db = $this->userModel->getDatabaseConnection();
+
+        $data = ['title'=>'Profile', 'db'=>$db];
+
+        $this->view('users/profile', $data);
+      }
+      else{
+        redirect('pages/index');
+      }
+
+
+    }
+
     public function reset($email)
     {
       if($this->isLoggedIn())

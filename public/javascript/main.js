@@ -144,13 +144,7 @@ dailyreport = {
   __add: {
     init: function _add() {
       //throw confirm window b4 user reloads
-      window.onbeforeunload = function (e) {
-        return window.confirm();
-      };
 
-      $(document).on("submit", "form", function (event) {
-        window.onbeforeunload = null;
-      });
       FilterInventory();
       const cyberCash = document.getElementById("cyber-cash");
       const cyberTill = document.getElementById("cyber-till");
@@ -2116,6 +2110,118 @@ dailyreport = {
               sleep(4700).then(() => {
                 document.querySelector(".alert_success").style.display = "none";
                 document.getElementById("add-alert").innerHTML = "";
+              });
+            }
+          },
+        });
+      });
+    },
+  },
+  deleteRecord: {
+    init: function _deleterecord() {
+      var cancel = document.getElementById("cancel-remove");
+      var accept = document.getElementById("accept-remove");
+
+      $("#cancel-remove").click(function (e) {
+        location.replace(`${hostUrl}/pages/dailyreport`);
+      });
+      $("#password").on("keyup", function (e) {
+        if (e.key === "Enter" || e.keyCode === 13) {
+          var id = document.getElementById("item-id").value;
+          var password = document.getElementById("password").value;
+          var date = document.getElementById("date-").value;
+          $.ajax({
+            url: `${hostUrl}/pages/DeleteRecordAll`,
+            type: "POST",
+            data: {
+              ID: id,
+              Password: password,
+              Date: date,
+            },
+            dataType: "json",
+            success: function (dataResult) {
+              if (dataResult.statusCode == 200) {
+                document.getElementById("deleteloader").style.display = "block";
+                sleep(4000).then(() => {
+                  document.getElementById("deleteloader").style.display =
+                    "none";
+                  location.replace(`${hostUrl}/pages/dailyreport`);
+                });
+              } else if (dataResult.statusCode == 317) {
+                document.getElementById("deleteloader").style.display = "block";
+                sleep(4000).then(() => {
+                  document.getElementById("deleteloader").style.display =
+                    "none";
+                  document.querySelector(".text-").style.display = "block";
+                  $(".text-").html(
+                    "an error occurred, record could not be deleted, please check your connection"
+                  );
+                });
+
+                sleep(8100).then(() => {
+                  document.querySelector(".text-").style.display = "none";
+                });
+              } else if (dataResult.statusCode == 300) {
+                document.querySelector(".text-").style.display = "none";
+                document.getElementById("deleteloader").style.display = "block";
+                sleep(4000).then(() => {
+                  document.getElementById("deleteloader").style.display =
+                    "none";
+                  document.querySelector(".text-").style.display = "block";
+                  $(".text-").html("Incorrect password, please try again");
+                });
+                sleep(8100).then(() => {
+                  document.querySelector(".text-").style.display = "none";
+                });
+              }
+            },
+          });
+        }
+      });
+      $("#accept-remove").click(function (e) {
+        //confirm password
+        var id = document.getElementById("item-id").value;
+        var password = document.getElementById("password").value;
+        var date = document.getElementById("date-").value;
+        $.ajax({
+          url: `${hostUrl}/pages/DeleteRecordAll`,
+          type: "POST",
+          data: {
+            ID: id,
+            Password: password,
+            Date: date,
+          },
+          dataType: "json",
+          success: function (dataResult) {
+            if (dataResult.statusCode == 200) {
+              document.getElementById("deleteloader").style.display = "block";
+              sleep(4000).then(() => {
+                document.getElementById("deleteloader").style.display = "none";
+                location.replace(`${hostUrl}/pages/dailyreport`);
+              });
+            } else if (dataResult.statusCode == 317) {
+              document.getElementById("deleteloader").style.display = "block";
+              sleep(4000).then(() => {
+                document.getElementById("deleteloader").style.display = "none";
+                document.querySelector(".text-").style.display = "block";
+                $(".text-").html(
+                  "an error occurred, record could not be deleted, please check your connection"
+                );
+              });
+
+              sleep(8100).then(() => {
+                document.querySelector(".text-").style.display = "none";
+              });
+            } else if (dataResult.statusCode == 300) {
+              document.querySelector(".text-").style.display = "none";
+              document.getElementById("deleteloader").style.display = "block";
+              sleep(4000).then(() => {
+                document.getElementById("deleteloader").style.display = "none";
+                document.querySelector(".text-").style.display = "block";
+                $(".text-").html("Incorrect password, please try again");
+              });
+              sleep(8100).then(() => {
+                document.querySelector(".text-").style.display = "none";
               });
             }
           },

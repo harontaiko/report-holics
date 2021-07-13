@@ -138,7 +138,7 @@
                                     <td>
                                         <img src="<?php echo URLROOT; ?>/public/images/images/avatar.png" class="mr-2"
                                             alt="image">
-                                        <?php echo isset($_SESSION['user_name']) ? $_SESSION['user_name'] . ' OG': 'N/A'; ?>
+                                        <?php echo $x['created_by'] ?>
                                     </td>
                                     <td> <a
                                             href="<?php echo URLROOT; ?>/pages/invoice/sale/<?php echo $x['sales_id']; ?>">invoice</a>

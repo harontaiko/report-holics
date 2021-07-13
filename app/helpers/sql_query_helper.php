@@ -548,7 +548,7 @@ function getExpenseTotal($date, $db)
 
     $rowItem = $row->fetch_assoc();
         
-    $totalexpense = isset($rowItem['expense_total']) ? $rowItem['expense_total'] : 'N/A';
+    $totalexpense = isset($rowItem['expense_total']) ? $rowItem['expense_total'] : 0;
 
     try {
         return $totalexpense;
@@ -572,7 +572,7 @@ function getExpenseTotalCount($date, $db)
 
     $rowItem = $row->fetch_assoc();
         
-    $totalexpense = isset($rowItem['cnt']) ? $rowItem['cnt'] : 'N/A';
+    $totalexpense = isset($rowItem['cnt']) ? $rowItem['cnt'] : 0;
 
     try {
         return $totalexpense;
@@ -711,7 +711,7 @@ function getSalesTotalCount($date, $db)
 
     $rowItem = $row->fetch_assoc();
         
-    $totalexpense = isset($rowItem['cnt']) ? $rowItem['cnt'] : 'N/A';
+    $totalexpense = isset($rowItem['cnt']) ? $rowItem['cnt'] : 0;
 
     try {
         return $totalexpense;
@@ -777,7 +777,7 @@ function getSaleTotal($date, $db)
 
     $rowItem = $row->fetch_assoc();
         
-    $totalexpense = isset($rowItem['selling_total']) ? $rowItem['selling_total'] : 'N/A';
+    $totalexpense = isset($rowItem['selling_total']) ? $rowItem['selling_total'] : 0;
 
     try {
         return $totalexpense;
@@ -802,7 +802,7 @@ function getBuyingTotal($date, $db)
 
     $rowItem = $row->fetch_assoc();
         
-    $totalexpense = isset($rowItem['buying_total']) ? $rowItem['buying_total'] : 'N/A';
+    $totalexpense = isset($rowItem['buying_total']) ? $rowItem['buying_total'] : 0;
 
     try {
         return $totalexpense;
@@ -827,7 +827,7 @@ function getNetProfit($date, $db)
 
     $rowItem = $row->fetch_assoc();
         
-    $totalexpense = isset($rowItem['profit_total']) ? $rowItem['profit_total'] : 'N/A';
+    $totalexpense = isset($rowItem['profit_total']) ? $rowItem['profit_total'] : 0;
 
     try {
         return $totalexpense;

@@ -7,7 +7,7 @@
             </span> Inventory
         </h3>
     </div>
-    <div id="open-modal" class="modal-window">
+    <div>
         <div>
             <input type="search" class="light-table-filter form-control mb-2" data-table="order-table"
                 placeholder="Filter (name/creator/no.)" />

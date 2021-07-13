@@ -3,8 +3,8 @@
     <div class="page-header">
         <h3 class="page-title">
             <span class="page-title-icon bg-gradient-primary text-white mr-2">
-                <i class="fas fa-cash-register fa-2x"></i>
-            </span> Expenses
+                <i class="fas fa-trash fa-2x"></i>
+            </span> Delete Item
         </h3>
         <a href="Javascript.history.go(-1)" class="btn btn-gradient-info text-right">back</a>
     </div>

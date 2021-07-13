@@ -42,6 +42,7 @@
                             <td style="background-color: #ffed86;">N/A</td>
                             <td style="background-color: #ffed86;">NET TOTAL</td>
                             <td style="background-color: #ffed86;">VIEW</td>
+                            <td style="background-color: #fb0808; color:#fff;">DELETE</td>
                         </tr>
                         <tr>
                             <td style="background-color: #89909f; color:#fff;">Date</td>
@@ -61,6 +62,7 @@
                             <td style="background-color: #89909f; color:#fff;">till</td>
                             <td style="background-color: #89909f; color:#fff;">GROSS</td>
                             <td style="background-color: #89909f; color:#fff;">SEE</td>
+                            <td style="background-color: #fb0808; color:#fff;">DELETE</td>
                         </tr>
                         <?php while ($net = $data['net']->fetch_assoc()) :  ?>
                         <tr id="latest-record" style="background: chartreuse; width: 100vw;">
@@ -134,7 +136,9 @@
                             <td><a href="#!"><?php echo number_format(($net['cash_sales'] + $net['till_sales'] + getSaleTotal($net['date_created'], $data['db'])) - (getExpenseTotal($net['date_created'], $data['db']))) . '/=';?>
                             </td>
                             <td><a href="<?php echo URLROOT; ?>/pages/viewEdit/<?php echo $net['sales_id']; ?>"><i
-                                        class="fas fa-eye"></i></a></td>
+                                        title="see record" class="fas fa-eye p-2"></i></a></td>
+                            <td><a href="<?php echo URLROOT; ?>/pages/deleteRecord/<?php echo $net['sales_id']; ?>"><i
+                                        title="delete record" class="fas fa-trash p-2"></i></a></td>
                         </tr>
                         <?php endwhile ?>
                     </tbody>

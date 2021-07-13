@@ -2,7 +2,7 @@
 
 function getMostRecentSales($db)
 {
-    $query = 'SELECT sales_id, sales_item, sales_id, selling_price, buying_price, profit, date_created FROM dr_sales ORDER BY sales_id DESC LIMIT 6';
+    $query = 'SELECT sales_id, sales_item, sales_id, selling_price, buying_price, profit, date_created, created_by FROM dr_sales ORDER BY sales_id DESC LIMIT 6';
         
     $result = SelectCondFree($query, 'dr_sales', $db);
         
@@ -17,9 +17,13 @@ function getMostRecentSales($db)
 
 function getCurrentAdmins($db)
 {
-    $query = 'SELECT `user_id`, login_count, date_logged, time_logged, user_ip FROM dr_login ORDER BY `user_id` ASC';
-        
-    $result = SelectCondFree($query, 'dr_login', $db);
+    $query = 'SELECT `user_id`, login_count, date_logged, time_logged, user_ip FROM dr_login WHERE `user_id` !=? ORDER BY `user_id` ASC';
+    
+    $binders = "s";
+
+    $param = array(3);
+    
+    $result = SelectCond($query, $binders, $param, $db);
         
     $row = $result->get_result();
         

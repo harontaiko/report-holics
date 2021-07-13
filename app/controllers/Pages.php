@@ -8,6 +8,28 @@ class Pages extends Controller
       $this->pageModel = $this->model('Page'); 
     }
 
+
+    public function createUser()
+    {
+      unset($_SESSION['cash']);
+      if (!isset($_SESSION["user_id"])) {
+        $data = [
+          "title" => "Daily Report",  
+        ];
+        redirect("users/index");
+      } 
+      //get all sales data
+      $net = $this->pageModel->getNetTotal();
+      
+      $db = $this->pageModel->getDatabaseConnection();
+
+      $inventoryData = $this->pageModel->getInventoryData();
+
+      $data = ['title'=>'Daily Report', "inventory" => $inventoryData, 'db'=>$db, 'net'=>$net];
+
+      $this->view('pages/createUser', $data);
+    }
+
     public function dailyreport()
     {
       unset($_SESSION['cash']);
@@ -271,6 +293,45 @@ class Pages extends Controller
       $this->view('pages/cashOut', $data);
     }
 
+    public function DeleteRecordAll()
+    {
+      if (!isset($_SESSION["user_id"])) {
+        $data = [
+          "title" => "Daily Report",  
+        ];
+        redirect("users/index");
+      } 
+
+      $data = ['title'=>'Daily Report'];
+
+      if($_SERVER['REQUEST_METHOD'] == 'POST')
+      {
+          $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+          $data = ['title' => 'Daily Report',
+          'id'=>$_POST['ID'],
+          'user'=>$_SESSION['user_id'],
+          'password'=>$_POST['Password'],
+          'date'=>$_POST['Date'],
+        ];
+
+        if($this->pageModel->DeleteRecordAll($data)){
+          echo json_encode(array('statusCode'=>200));
+        }
+        elseif($this->pageModel->DeleteRecordAll($data) == 0){
+          echo json_encode(array('statusCode'=>300));
+        }
+        else{
+          echo json_encode(array('statusCode'=>317));
+        }
+      }
+      else{
+        http_response_code(404);
+        include('../app/404.php');
+        die();
+      } 
+    }
+
     public function DeleteItem()
     {
       if (!isset($_SESSION["user_id"])) {
@@ -302,6 +363,34 @@ class Pages extends Controller
         include('../app/404.php');
         die();
       } 
+    }
+
+    public function deleteRecord($id)
+    {
+      if(isset($id)){
+        if (!isset($_SESSION["user_id"])) {
+          $data = [
+            "title" => "Daily Report",  
+          ];
+          redirect("users/index");
+        } 
+        
+        $db = $this->pageModel->getDatabaseConnection();
+
+        $inventoryData = $this->pageModel->getInventoryData();
+
+        $id = $this->pageModel->getRecordById($id);
+
+        $date = $this->pageModel->getRecordDateById($id);
+
+        $data = ['title'=>'Delete Record #'.$id.'', 'date'=>$date, "inventory" => $inventoryData, 'db'=>$db, 'id'=>htmlspecialchars($id)];
+
+        $this->view('pages/deleteRecord', $data);
+      }else{
+        http_response_code(404);
+        include('../app/404.php');
+        die();
+      }
     }
 
     public function removeItem($id)
