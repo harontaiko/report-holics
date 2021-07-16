@@ -2351,4 +2351,280 @@ dailyreport = {
   __date: {
     init: function _date() {},
   },
+  __cashouts: {
+    init: function _cashouts() {
+      (function (document) {
+        "use strict";
+
+        var LightTableFilter = (function (Arr) {
+          var _input;
+
+          function _onInputEvent(e) {
+            _input = e.target;
+            var tables = document.getElementsByClassName(
+              _input.getAttribute("data-table")
+            );
+            Arr.forEach.call(tables, function (table) {
+              Arr.forEach.call(table.tBodies, function (tbody) {
+                Arr.forEach.call(tbody.rows, _filter);
+              });
+            });
+          }
+
+          function _filter(row) {
+            var text = row.textContent.toLowerCase(),
+              val = _input.value.toLowerCase();
+            row.style.display = text.indexOf(val) === -1 ? "none" : "table-row";
+          }
+
+          return {
+            init: function () {
+              var inputs = document.getElementsByClassName("cashouts-filter");
+              Arr.forEach.call(inputs, function (input) {
+                input.oninput = _onInputEvent;
+              });
+            },
+          };
+        })(Array.prototype);
+
+        document.addEventListener("readystatechange", function () {
+          if (document.readyState === "complete") {
+            LightTableFilter.init();
+          }
+        });
+      })(document);
+    },
+  },
+  deleteCashout: {
+    init: function _deleterecord() {
+      var cancel = document.getElementById("cancel-remove");
+      var accept = document.getElementById("accept-remove");
+
+      $("#cancel-remove").click(function (e) {
+        location.replace(`${hostUrl}/pages/cashouts`);
+      });
+      $("#password").on("keyup", function (event) {
+        if (event.keyCode === 13) {
+          //confirm password
+          var id = document.getElementById("item-id").value;
+          var password = document.getElementById("password").value;
+          $.ajax({
+            url: `${hostUrl}/pages/DeleteCashoutAll`,
+            type: "POST",
+            data: {
+              ID: id,
+              Password: password,
+            },
+            dataType: "json",
+            success: function (dataResult) {
+              if (dataResult.statusCode == 200) {
+                document.getElementById("deleteloader").style.display = "block";
+                sleep(4000).then(() => {
+                  document.getElementById("deleteloader").style.display =
+                    "none";
+                  location.replace(`${hostUrl}/pages/cashouts`);
+                });
+              } else if (dataResult.statusCode == 317) {
+                document.getElementById("deleteloader").style.display = "block";
+                sleep(4000).then(() => {
+                  document.getElementById("deleteloader").style.display =
+                    "none";
+                  document.querySelector(".text-").style.display = "block";
+                  $(".text-").html(
+                    "an error occurred, record could not be deleted, please check your connection"
+                  );
+                });
+
+                sleep(8100).then(() => {
+                  document.querySelector(".text-").style.display = "none";
+                });
+              } else if (dataResult.statusCode == 300) {
+                document.querySelector(".text-").style.display = "none";
+                document.getElementById("deleteloader").style.display = "block";
+                sleep(4000).then(() => {
+                  document.getElementById("deleteloader").style.display =
+                    "none";
+                  document.querySelector(".text-").style.display = "block";
+                  $(".text-").html("Incorrect password, please try again");
+                });
+                sleep(8100).then(() => {
+                  document.querySelector(".text-").style.display = "none";
+                });
+              }
+            },
+          });
+        }
+      });
+
+      $("#accept-remove").click(function (e) {
+        //confirm password
+        var id = document.getElementById("item-id").value;
+        var password = document.getElementById("password").value;
+        $.ajax({
+          url: `${hostUrl}/pages/DeleteCashoutAll`,
+          type: "POST",
+          data: {
+            ID: id,
+            Password: password,
+          },
+          dataType: "json",
+          success: function (dataResult) {
+            if (dataResult.statusCode == 200) {
+              document.getElementById("deleteloader").style.display = "block";
+              sleep(4000).then(() => {
+                document.getElementById("deleteloader").style.display = "none";
+                location.replace(`${hostUrl}/pages/cashouts`);
+              });
+            } else if (dataResult.statusCode == 317) {
+              document.getElementById("deleteloader").style.display = "block";
+              sleep(4000).then(() => {
+                document.getElementById("deleteloader").style.display = "none";
+                document.querySelector(".text-").style.display = "block";
+                $(".text-").html(
+                  "an error occurred, record could not be deleted, please check your connection"
+                );
+              });
+
+              sleep(8100).then(() => {
+                document.querySelector(".text-").style.display = "none";
+              });
+            } else if (dataResult.statusCode == 300) {
+              document.querySelector(".text-").style.display = "none";
+              document.getElementById("deleteloader").style.display = "block";
+              sleep(4000).then(() => {
+                document.getElementById("deleteloader").style.display = "none";
+                document.querySelector(".text-").style.display = "block";
+                $(".text-").html("Incorrect password, please try again");
+              });
+              sleep(8100).then(() => {
+                document.querySelector(".text-").style.display = "none";
+              });
+            }
+          },
+        });
+      });
+    },
+  },
+  invoices: {
+    init: function _invoices() {
+      //search
+      $("#search-").click(function (e) {
+        if (document.getElementById("invoice-item").value != "") {
+          $("#invoice-loading").fadeIn();
+          sleep(2200).then(() => {
+            //load results onto div
+            $("#invoice-loading").fadeOut();
+            $.ajax({
+              url: `${hostUrl}/pages/loadInvoiceSearch/${
+                document.getElementById("invoice-item").value
+              }`,
+              type: "GET",
+              dataType: "json",
+              success: function (dataResult) {
+                if (dataResult.statusCode == 200) {
+                  var string = `
+                  <table class="table table-striped table-cashouts">
+                  <thead>
+                      <tr>
+                          <th> Date </th>
+                          <th> Sales Item </th>
+                          <th> Buying Price </th>
+                          <th> Selling Price </th>
+                          <th> Profit </th>
+                          <th> Invoice </th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                  `;
+                  dataResult.row.forEach((exp) => {
+                    string += `
+                    <tr>
+                    <th>${exp.date_created}</th>
+                    <th>${exp.sales_item}</th>
+                    <th>${exp.buying_price}</th>
+                    <th>${exp.selling_price}</th>
+                    <th>${exp.profit}</th>
+                    <th><a href=${hostUrl}/pages/invoice/sale/${exp.sales_id}>invoice</a></th>
+                    </tr>
+                    `;
+                    $("#invoice-result").html(string);
+                  });
+                } else {
+                  var stringErr = "";
+                  stringErr += `<p class="text-danger">record could not be foind, check your connection and try again</p>`;
+                  $("#invoice-result").html(stringErr);
+                }
+              },
+            });
+          });
+        } else {
+          document.getElementById("invoice-item").style.border =
+            "1px solid red";
+          sleep(2500).then(() => {
+            document.getElementById("invoice-item").style.border = "";
+          });
+        }
+      });
+      //on enter
+      $("#invoice-item").on("keyup", function (event) {
+        if (event.keyCode === 13) {
+          if (document.getElementById("invoice-item").value != "") {
+            $("#invoice-loading").fadeIn();
+            sleep(2200).then(() => {
+              //load results onto div
+              $("#invoice-loading").fadeOut();
+              $.ajax({
+                url: `${hostUrl}/pages/loadInvoiceSearch/${
+                  document.getElementById("invoice-item").value
+                }`,
+                type: "GET",
+                dataType: "json",
+                success: function (dataResult) {
+                  if (dataResult.statusCode == 200) {
+                    var string = `
+                    <table class="table table-striped table-cashouts">
+                    <thead>
+                        <tr>
+                            <th> Date </th>
+                            <th> Sales Item </th>
+                            <th> Buying Price </th>
+                            <th> Selling Price </th>
+                            <th> Profit </th>
+                            <th> Invoice </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    `;
+                    dataResult.row.forEach((exp) => {
+                      string += `
+                      <tr>
+                      <th>${exp.date_created}</th>
+                      <th>${exp.sales_item}</th>
+                      <th>${exp.buying_price}</th>
+                      <th>${exp.selling_price}</th>
+                      <th>${exp.profit}</th>
+                      <th><a href=${hostUrl}/pages/invoice/sale/${exp.sales_id}>invoice</a></th>
+                      </tr>
+                      `;
+                      $("#invoice-result").html(string);
+                    });
+                  } else {
+                    var stringErr = "";
+                    stringErr += `<p class="text-danger">record could not be foind, check your connection and try again</p>`;
+                    $("#invoice-result").html(stringErr);
+                  }
+                },
+              });
+            });
+          } else {
+            document.getElementById("invoice-item").style.border =
+              "1px solid red";
+            sleep(2500).then(() => {
+              document.getElementById("invoice-item").style.border = "";
+            });
+          }
+        }
+      });
+    },
+  },
 };

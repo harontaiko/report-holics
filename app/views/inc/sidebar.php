@@ -83,9 +83,9 @@
                         </a>
                         <div class="collapse" id="receipts">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="#!">
+                                <li class="nav-item"> <a class="nav-link" href="<?php echo URLROOT; ?>/pages/invoices">
                                         Invoices</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="#!">
+                                <li class="nav-item"> <a class="nav-link" href="<?php echo URLROOT; ?>/pages/cashouts">
                                         cashouts </a>
                                 </li>
                             </ul>

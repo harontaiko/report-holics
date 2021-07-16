@@ -14,6 +14,27 @@ class Page
       return $this->db;
     }
 
+    public function getSoldItemSearch($item)
+    {
+        $q_f = "ALTER TABLE dr_sales ADD FULLTEXT(sales_item, date_created)";
+        $stmt = $this->db->prepare($q_f);
+        $stmt->execute();
+
+
+        $query = 'SELECT * FROM dr_sales WHERE MATCH(sales_item, date_created) AGAINST(? WITH QUERY EXPANSION)';
+        $stmt_s = $this->db->prepare($query);
+        $stmt_s->bind_param("s", $item);
+        $stmt_s->execute();
+
+        $row = $stmt_s->get_result();
+
+        try {
+            return $row;
+        } catch (Error $e) {
+            return false;
+        }  
+    }
+
     public function addStock($data)
     {
         $query = 'SELECT stock_id FROM dr_stock';
@@ -337,6 +358,51 @@ class Page
                 Delete($queryc, $bindersc, $parametersdate, 'dr_cybershop', $this->db);
                 Delete($queryexp, $bindersexp, $parametersdate, 'dr_expenses', $this->db);
                 Delete($querys, $binderss, $parametersdate, 'dr_sales', $this->db);
+                return true;
+            } catch (Error $e) {
+                return false;
+            }
+        }
+        else{
+            return 0;
+        }
+
+    }
+
+    public function DeleteCashoutAll($data)
+    {
+        $check = 'SELECT `password` FROM dr_user WHERE `user_id` = ?';
+
+        $hold = "s";
+
+        $val = array($data['user']);
+
+        $result = SelectCond($check, $hold, $val, $this->db);
+
+        $row = $result->get_result();
+
+        $rowItem = $row->fetch_assoc();
+        
+        $password = isset($rowItem['password']) ? $rowItem['password'] : '';
+
+        $password_check = password_verify($data['password'], $password);
+
+        if($password_check === false)
+        {
+            return 0;
+        }
+        else if($password_check === true)
+        {
+            //delete record from cashout
+            $query = 'DELETE FROM dr_cashout WHERE cash_id=?';
+
+            $binders = "s";
+    
+            $parameters = array($data['id']);
+            
+  
+            try {
+                Delete($query, $binders, $parameters, 'dr_cashout', $this->db);
                 return true;
             } catch (Error $e) {
                 return false;
@@ -1601,6 +1667,29 @@ class Page
 
         try {
             return $row;
+        } catch (Error $e) {
+            return false;
+        }
+    }
+
+    public function getCashoutById($id)
+    {
+        $query = 'SELECT cash_id FROM dr_cashout WHERE cash_id = ?';
+
+        $binders = "s";
+
+        $parameters = array($id);
+
+        $result = SelectCond($query, $binders, $parameters, $this->db);
+
+        $row = $result->get_result();
+
+        $rowItem = $row->fetch_assoc();
+        
+        $id = isset($rowItem['cash_id']) ? $rowItem['cash_id'] : 'id:not found';
+
+        try {
+            return $id;
         } catch (Error $e) {
             return false;
         }

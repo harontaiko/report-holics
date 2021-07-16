@@ -7,4 +7,36 @@
   background: #f9f9f9;
 }
 
+$base-line-height: 60px;
+$white: rgb(235, 231, 231);
+$off-white: rgba(170, 169, 170, 0.8);
+$spin-duration: 1s;
+$pulse-duration: 750ms;
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  50% {
+    background: $white;
+  }
+}
+
+#invoice-loading {
+  margin: 1rem auto auto auto;
+  border-radius: 50%;
+  width: $base-line-height;
+  height: $base-line-height;
+  border: 0.25rem solid $off-white;
+  border-top-color: #111;
+  animation: spin $spin-duration infinite linear;
+  display: none;
+}
+
 @import "_old.scss";

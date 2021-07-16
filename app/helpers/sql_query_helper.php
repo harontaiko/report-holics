@@ -321,6 +321,8 @@ function SingleColumnSearchQuestionSuggestion(
   return $stmt_s;
 }
 
+
+
 /**
  * perfoms full text search in database
  *

@@ -1,14 +1,14 @@
 <?php require(APPROOT . '/views/inc/header.php'); ?>
 
-<body class="cashouts __cashouts">
+<body class="deleteCashout __deleteCashout">
     <div class="container-scroller">
         <?php require(APPROOT . '/views/inc/navbar.php'); ?>
         <div class="container-fluid page-body-wrapper">
             <?php require(APPROOT . '/views/inc/sidebar.php'); ?>
 
             <div class="main-panel">
-                <?php require(APPROOT . '/views/content/cashouts.php'); ?>
-                <!-- partial:partials/_footer.html -->
+                <?php include APPROOT .'/views/content/deletecashout.php'; ?>
+                <!-- partial:partials/_   footer.html -->
                 <footer class="footer">
                     <div class="container-fluid clearfix">
                         <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright ©

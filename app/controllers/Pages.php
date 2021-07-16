@@ -8,6 +8,143 @@ class Pages extends Controller
       $this->pageModel = $this->model('Page'); 
     }
 
+    
+    public function loadInvoiceSearch($item)
+    {
+      if($_SERVER['REQUEST_METHOD'] == 'GET')
+      {
+        $data = ['title'=>'Daily Report'];
+
+        if($this->pageModel->getSoldItemSearch($item)){
+          $row = $this->pageModel->getSoldItemSearch($item);
+          $result_array = array();
+          while($dt = $row->fetch_assoc()) {
+            array_push($result_array, $dt);
+        }
+   
+          echo json_encode(array("statusCode"=>200, 'row'=>$result_array));
+        }
+        else{
+          echo json_encode(array("statusCode"=>317));
+        }
+      }
+      else
+      {
+        http_response_code(404);
+        include('../app/404.php');
+        die();
+      }
+    }
+
+    public function DeleteCashoutAll()
+    {
+      if (!isset($_SESSION["user_id"])) {
+        $data = [
+          "title" => "Daily Report",  
+        ];
+        redirect("users/index");
+      } 
+
+      $data = ['title'=>'Daily Report'];
+
+      if($_SERVER['REQUEST_METHOD'] == 'POST')
+      {
+          $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+          $data = ['title' => 'Daily Report',
+          'id'=>$_POST['ID'],
+          'user'=>$_SESSION['user_id'],
+          'password'=>$_POST['Password'],
+        ];
+
+        if($this->pageModel->DeleteCashoutAll($data)){
+          echo json_encode(array('statusCode'=>200));
+        }
+        elseif($this->pageModel->DeleteCashoutAll($data) == 0){
+          echo json_encode(array('statusCode'=>300));
+        }
+        else{
+          echo json_encode(array('statusCode'=>317));
+        }
+      }
+      else{
+        http_response_code(404);
+        include('../app/404.php');
+        die();
+      } 
+    }
+
+    public function deletecashout($id)
+    {
+      if(isset($id)){
+        if (!isset($_SESSION["user_id"])) {
+          $data = [
+            "title" => "Daily Report",  
+          ];
+          redirect("users/index");
+        } 
+        
+        $db = $this->pageModel->getDatabaseConnection();
+
+        $inventoryData = $this->pageModel->getInventoryData();
+
+        $id = $this->pageModel->getCashoutById($id);
+
+        $data = ['title'=>'Delete Cashout #'.$id.'', "inventory" => $inventoryData, 'db'=>$db, 'id'=>htmlspecialchars($id)];
+
+        $this->view('pages/deletecashout', $data);
+      }else{
+        http_response_code(404);
+        include('../app/404.php');
+        die();
+      }
+    }
+
+    public function cashouts()
+    {
+      unset($_SESSION['cash']);
+      if (!isset($_SESSION["user_id"])) {
+        $data = [
+          "title" => "Daily Report",  
+        ];
+        redirect("users/index");
+      } 
+      //get all sales data
+      $net = $this->pageModel->getNetTotal();
+      
+      $db = $this->pageModel->getDatabaseConnection();
+
+      $inventoryData = $this->pageModel->getInventoryData();
+
+      $out = getCashout('', $db);
+
+      $data = ['title'=>'Cashout Receipts', 'out'=>$out, "inventory" => $inventoryData, 'db'=>$db, 'net'=>$net];
+
+      $this->view('pages/cashouts', $data);
+    }
+
+
+    public function invoices()
+    {
+      unset($_SESSION['cash']);
+      if (!isset($_SESSION["user_id"])) {
+        $data = [
+          "title" => "Daily Report",  
+        ];
+        redirect("users/index");
+      } 
+      //get all sales data
+      $net = $this->pageModel->getNetTotal();
+      
+      $db = $this->pageModel->getDatabaseConnection();
+
+      $inventoryData = $this->pageModel->getInventoryData();
+
+      $data = ['title'=>'Daily Report', "inventory" => $inventoryData, 'db'=>$db, 'net'=>$net];
+
+      $this->view('pages/invoices', $data);
+    }
+
 
     public function createUser()
     {
@@ -108,28 +245,6 @@ class Pages extends Controller
       }
     }
 
-    public function cashOuts()
-    {
-      unset($_SESSION['cash']);
-      if (!isset($_SESSION["user_id"])) {
-        $data = [
-          "title" => "Daily Report",  
-        ];
-        redirect("users/index");
-      } 
-      //get all sales data
-      $net = $this->pageModel->getNetTotal();
-      
-      $db = $this->pageModel->getDatabaseConnection();
-
-      $inventoryData = $this->pageModel->getInventoryData();
-
-      $out = getCashout('', $db);
-
-      $data = ['title'=>'Receipts', 'out'=>$out, "inventory" => $inventoryData, 'db'=>$db, 'net'=>$net];
-
-      $this->view('pages/cashOuts', $data);
-    }
 
     public function attatchReceipt($date)
     {
