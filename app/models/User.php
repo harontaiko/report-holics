@@ -14,6 +14,75 @@ class User
       return $this->db;
     }
 
+    public function UpdateProfile($data)
+    {
+       $queryToken = 'UPDATE dr_user SET username=?, email=?, `password`=? WHERE `user_id`=?';
+
+       $bindersToken = 'ssss';
+
+       $valuesToken = array($data['username'], $data['email'], $data['newPassword'], $data['id']);
+
+       
+       try {
+           Update($queryToken, $bindersToken, $valuesToken, 'dr_user', $this->db);
+           return true;
+       } catch (Error $e) {
+           return 'dad';
+       }
+
+    }
+
+    public function checkOldPassword($data)
+    {
+      $query = 'SELECT `password` FROM dr_user WHERE `user_id` = ?';
+
+      $binders = "s";
+ 
+      $parameters = array($data['id']);
+ 
+      $result = SelectCond($query, $binders, $parameters, $this->db);
+ 
+      $row = $result->get_result();
+
+      $rowItem = $row->fetch_assoc();
+
+      $password = $rowItem['password'];
+
+      $passwordcheck = password_verify($data['oldPassword'], $password);
+
+      if($passwordcheck == false)
+      {
+        return false;
+      }
+      else if($passwordcheck == true)
+      {
+        return true;
+      }
+      else{
+        return false;
+      }
+ 
+    }
+
+    public function getUserById($id)
+    {
+     $query = 'SELECT `user_id`, username, email, `password`, is_admin, date_created, time_created, created_by, creator_ip FROM dr_user WHERE `user_id` = ?';
+
+     $binders = "s";
+
+     $parameters = array($id);
+
+     $result = SelectCond($query, $binders, $parameters, $this->db);
+
+     $row = $result->get_result();
+
+     try {
+       return $row;
+     } catch (Error $e) {
+       return false;
+     }
+    }
+
      // Find user by username
      public function findUserByName($username)
      {

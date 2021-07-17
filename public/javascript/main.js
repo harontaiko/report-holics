@@ -7,6 +7,7 @@
  */
 /**MARKUP BASED JAVASCRIPT, BASED ON PAUL IRISH'S DOM INTRUBUSIVE JS */
 var hostUrl = document.querySelector("link[rel='host']").getAttribute("href");
+
 UTIL = {
   fire: function (func, funcname, args) {
     var namespace = dailyreport;
@@ -2395,7 +2396,7 @@ dailyreport = {
       })(document);
     },
   },
-  deleteCashout: {
+  __deleteCashout: {
     init: function _deleterecord() {
       var cancel = document.getElementById("cancel-remove");
       var accept = document.getElementById("accept-remove");
@@ -2505,11 +2506,12 @@ dailyreport = {
       });
     },
   },
-  invoices: {
+  __invoices: {
     init: function _invoices() {
       //search
       $("#search-").click(function (e) {
         if (document.getElementById("invoice-item").value != "") {
+          $("#invoice-result").html("");
           $("#invoice-loading").fadeIn();
           sleep(2200).then(() => {
             //load results onto div
@@ -2569,6 +2571,7 @@ dailyreport = {
       $("#invoice-item").on("keyup", function (event) {
         if (event.keyCode === 13) {
           if (document.getElementById("invoice-item").value != "") {
+            $("#invoice-result").html("");
             $("#invoice-loading").fadeIn();
             sleep(2200).then(() => {
               //load results onto div
@@ -2624,6 +2627,56 @@ dailyreport = {
             });
           }
         }
+      });
+    },
+  },
+  __profiler: {
+    init: function _profile() {
+      $("#save-profile").click(function (e) {
+        $("#profile-loading").fadeIn();
+        sleep(2200).then(() => {
+          $("#profile-loading").fadeOut();
+          $.ajax({
+            url: `${hostUrl}/Users/saveProfile`,
+            type: "POST",
+            data: {
+              username: document.getElementById("username").value,
+              email: document.getElementById("email").value,
+              oldPassword: document.getElementById("old").value,
+              newPassword: document.getElementById("new").value,
+            },
+            dataType: "json",
+            success: function (dataResult) {
+              if (dataResult.statusCode == 200) {
+                console.log("200");
+                var string = `
+                <div class="card bg-gradient-success">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <strong>Success!</strong> Profile has been saved.
+                </div>
+                `;
+                $("#profile-result").html(string);
+              } else if (dataResult.statusCode == 201) {
+                console.log("201");
+                var stringErr = "";
+                stringErr += `<p class="text-danger">record could not be found, check your connection and try again</p>`;
+                $("#profile-result").html(stringErr);
+              } else if (dataResult.statusCode == 317) {
+                console.log("317");
+                var stringErr = "";
+                stringErr += `<div class="card bg-gradient-success">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>Error!</strong> Incorrect password, please try again.
+              </div>`;
+                $("#profile-result").html(stringErr);
+              }
+            },
+          });
+        });
       });
     },
   },

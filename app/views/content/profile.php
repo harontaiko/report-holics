@@ -8,22 +8,25 @@
         </h3>
     </div>
     <div class="card">
+        <div id="profile-result" class="text-center" tabindex="0"></div>
         <div class="card-body">
             <form class="form-sample">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">First Name</label>
+                            <label class="col-sm-3 col-form-label">username</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control">
+                                <input type="text" id="username"
+                                    value="<?php print_r($data['row']['0']['username']); ?>" class="form-control">
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Last Name</label>
+                            <label class="col-sm-3 col-form-label">email</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control">
+                                <input type="email" id="email" value="<?php print_r($data['row']['0']['email']) ?>"
+                                    class="form-control">
                             </div>
                         </div>
                     </div>
@@ -31,20 +34,25 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Gender</label>
+                            <label class="col-sm-3 col-form-label">Admin</label>
                             <div class="col-sm-9">
                                 <select class="form-control">
-                                    <option>Male</option>
-                                    <option>Female</option>
+                                    <?php if(($data['row']['0']['is_admin']) === "true"): ?>
+                                    <option>True</option>
+                                    <?php else: ?>
+                                    <option>False</option>
+                                    <?php endif ?>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Date of Birth</label>
+                            <label class="col-sm-3 col-form-label">Date Created</label>
                             <div class="col-sm-9">
-                                <input class="form-control" placeholder="dd/mm/yyyy">
+                                <input class="form-control"
+                                    value="<?php echo date('jS F Y',strtotime($data['row']['0']['date_created'])) ?> at <?php echo date('h:i:s A',strtotime($data['row']['0']['time_created'])) ?>"
+                                    placeholder="dd/mm/yyyy">
                             </div>
                         </div>
                     </div>
@@ -52,11 +60,11 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">is Admin</label>
+                            <label class="col-sm-3 col-form-label">Notifications</label>
                             <div class="col-sm-9">
                                 <select class="form-control">
-                                    <option>True</option>
-                                    <option>False</option>
+                                    <option value="on">on</option>
+                                    <option value="off">off</option>
                                 </select>
                             </div>
                         </div>
@@ -83,65 +91,28 @@
                         </div>
                     </div>
                 </div>
-                <p class="card-description"> Address </p>
+                <p class="card-description"> Password </p>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Address 1</label>
+                            <label class="col-sm-3 col-form-label">Old password</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control">
+                                <input type="password" id="old" value="" class="form-control">
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">State</label>
+                            <label class="col-sm-3 col-form-label">New Password</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control">
+                                <input type="password" id="new" value="" class="form-control">
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Address 2</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Postcode</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">City</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Country</label>
-                            <div class="col-sm-9">
-                                <select class="form-control">
-                                    <option>Kenya</option>
-                                    <option>Other</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-lg btn-gradient-success">Save</button>
+                <button type="button" id="save-profile" class="btn btn-lg btn-gradient-info"
+                    onclick="$('#profile-result')[0].focus()">Save</button>
+                <div id="profile-loading">Loading&#8230;</div>
             </form>
         </div>
     </div>

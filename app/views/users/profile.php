@@ -1,6 +1,6 @@
 <?php require(APPROOT . '/views/inc/header.php'); ?>
 
-<body class="profile __profile">
+<body class="profiler __profiler">
     <div class="container-scroller">
         <?php require(APPROOT . '/views/inc/navbar.php'); ?>
         <div class="container-fluid page-body-wrapper">

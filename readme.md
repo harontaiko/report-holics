@@ -19,3 +19,4 @@ Inventory management and daily record keeping system, built on PHP OOP and Js, D
 
 - create user, some few links , profile & notifications
 - create user
+- profile err

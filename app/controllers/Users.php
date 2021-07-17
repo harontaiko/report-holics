@@ -22,20 +22,67 @@ class Users extends Controller
       $this->view('users/index', $data);
     }
 
+    public function saveProfile()
+    {
+
+       if($this->isLoggedIn())
+      {
+        redirect('pages/index');
+      }
+
+      $data = ['title'=>'Daily Report'];
+
+      if($_SERVER['REQUEST_METHOD'] == 'POST')
+      {
+
+          $data = ['title' => 'Daily Report',
+          'id'=>$_SESSION['user_id'],
+          'username'=>$_POST['username'],
+          'email'=>$_POST['email'],
+          'oldPassword'=>$_POST['oldPassword'],
+          'newPassword'=>$_POST['newPassword'],
+        ];
+    
+        $data['newPassword'] = password_hash($data['newPassword'], PASSWORD_DEFAULT);
+    
+        if($this->userModel->checkOldPassword($data)){
+          if($this->userModel->UpdateProfile($data)){
+            echo json_encode(array('statusCode'=>200));
+          }
+          else{
+            echo json_encode(array('statusCode'=>201));
+          }
+        }else{
+          echo json_encode(array('statusCode'=>317));
+        }
+      }
+      else{
+        http_response_code(404);
+        include('../app/404.php');
+        die();
+      } 
+    }
+
     public function profile()
     {
       if($this->isLoggedIn())
       {
         $db = $this->userModel->getDatabaseConnection();
 
-        $data = ['title'=>'Profile', 'db'=>$db];
+        
+        $users = $this->userModel->getUserById($_SESSION['user_id']);
+        $arr = array();
+        while($x = $users->fetch_assoc()){
+          array_push($arr, $x);
+        }
+
+        $data = ['title'=>'Profile', 'db'=>$db, 'row'=>$arr];
 
         $this->view('users/profile', $data);
       }
       else{
         redirect('pages/index');
       }
-
 
     }
 
