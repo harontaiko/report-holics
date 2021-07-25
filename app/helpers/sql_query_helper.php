@@ -1076,7 +1076,7 @@ function getSalesTotalWeek($db)
 
   $rowItem = $row->fetch_assoc();
 
-  $totalmovie = isset($rowItem['sales_net']) ? $rowItem['sales_net'] : 'N/A';
+  $totalmovie = isset($rowItem['sales_net']) ? $rowItem['sales_net'] : 0;
 
   try {
       return $totalmovie;
@@ -1629,7 +1629,7 @@ function getNetTotalWeek($db)
 
   $rowItem = $row->fetch_assoc();
 
-  $totalweekly = isset($rowItem['net_total']) ? $rowItem['net_total'] : 'N/A';
+  $totalweekly = isset($rowItem['net_total']) ? $rowItem['net_total'] : 0;
 
   try {
       return $totalweekly;

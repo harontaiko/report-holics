@@ -274,10 +274,16 @@ dailyreport = {
               return at > bt ? 1 : at < bt ? -1 : 0;
             })
         );
-        //load expense onto DOM
-        $("#exp").load(`loadLatestExpense`);
-        //load sold i==onto DOM
-        $("#sl").load(`loadLatestSold`);
+        document.getElementById("date").addEventListener("change", () => {
+          //load expense onto DOM
+          $("#exp").load(
+            `loadLatestExpense/${document.getElementById("date").value}`
+          );
+          //load sold i==onto DOM
+          $("#sl").load(
+            `loadLatestSold/${document.getElementById("date").value}`
+          );
+        });
 
         //create record of all sale
         $(".save-record").click(function (e) {
@@ -289,7 +295,8 @@ dailyreport = {
             movieCash.value == "" ||
             movieTill.value == "" ||
             psCash.value == "" ||
-            psTill.value == ""
+            psTill.value == "" ||
+            document.getElementById("date").value == ""
           ) {
             cyberTill.style.border = "1.5px solid red";
             cyberCash.style.border = "1.5px solid red";
@@ -331,6 +338,7 @@ dailyreport = {
                         movietill: movieTill.value,
                         pscash: psCash.value,
                         pstill: psTill.value,
+                        date: document.getElementById("date").value,
                       },
                       dataType: "json",
                       success: function (dataResult) {
@@ -339,6 +347,9 @@ dailyreport = {
                           $.ajax({
                             url: `${hostUrl}/pages/SaveNetTotal`,
                             type: "POST",
+                            data: {
+                              date: document.getElementById("date").value,
+                            },
                             dataType: "json",
                             success: function (dataResult) {
                               if (dataResult.statusCode == 200) {
@@ -405,6 +416,7 @@ dailyreport = {
                         movietill: movieTill.value,
                         pscash: psCash.value,
                         pstill: psTill.value,
+                        date: document.getElementById("date").value,
                       },
                       dataType: "json",
                       success: function (dataResult) {
@@ -413,6 +425,9 @@ dailyreport = {
                           $.ajax({
                             url: `${hostUrl}/pages/SaveNetTotal`,
                             type: "POST",
+                            data: {
+                              date: document.getElementById("date").value,
+                            },
                             dataType: "json",
                             success: function (dataResult) {
                               if (dataResult.statusCode == 200) {
@@ -479,6 +494,7 @@ dailyreport = {
                         movietill: movieTill.value,
                         pscash: psCash.value,
                         pstill: psTill.value,
+                        date: document.getElementById("date").value,
                       },
                       dataType: "json",
                       success: function (dataResult) {
@@ -487,6 +503,9 @@ dailyreport = {
                           $.ajax({
                             url: `${hostUrl}/pages/SaveNetTotal`,
                             type: "POST",
+                            data: {
+                              date: document.getElementById("date").value,
+                            },
                             dataType: "json",
                             success: function (dataResult) {
                               if (dataResult.statusCode == 200) {
@@ -553,6 +572,7 @@ dailyreport = {
                         movietill: movieTill.value,
                         pscash: psCash.value,
                         pstill: psTill.value,
+                        date: document.getElementById("date").value,
                       },
                       dataType: "json",
                       success: function (dataResult) {
@@ -561,6 +581,9 @@ dailyreport = {
                           $.ajax({
                             url: `${hostUrl}/pages/SaveNetTotal`,
                             type: "POST",
+                            data: {
+                              date: document.getElementById("date__").value,
+                            },
                             dataType: "json",
                             success: function (dataResult) {
                               if (dataResult.statusCode == 200) {
@@ -640,6 +663,7 @@ dailyreport = {
               data: {
                 expense: expense_name,
                 amount: expense_val,
+                date: document.getElementById("date__").value,
               },
               dataType: "json",
               success: function (dataResult) {
@@ -652,7 +676,9 @@ dailyreport = {
                     item.value = "";
                   });
                   //load expense onto DOM
-                  $("#exp").load(`loadLatestExpense`);
+                  $("#exp").load(
+                    `loadLatestExpense/${document.getElementById("date").value}`
+                  );
                 } else if (dataResult.statusCode == 317) {
                   //error,
                 }
@@ -714,7 +740,9 @@ dailyreport = {
                     return this.defaultSelected;
                   });
                   //load sold i==onto DOM
-                  $("#sl").load(`loadLatestSold`);
+                  $("#sl").load(
+                    `loadLatestSold/${document.getElementById("date").value}`
+                  );
                   //update inventory real time
                   $("#open-modal").load(`loadInventoryData`);
                 } else if (dataResult.statusCode == 317) {

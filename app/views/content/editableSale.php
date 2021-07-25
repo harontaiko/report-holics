@@ -11,8 +11,9 @@
     <main>
         <h2 id="add-title">New Record</h2>
         <form action="" method="POST" id="form-add">
-            <input style="background: #81ec16;color: red;" type="datetime" name="date" id="date"
-                value="<?php echo isset($data['date']) ? $data['date'] : ''; ?>" readonly>
+            <input style="background: #81ec16;color: red;"
+                onchange="document.getElementById(`date__`).value = this.value" type="date" name="date" id="date"
+                value="">
             <div class="alert alert_success" id="alert_add">
                 <p id="add-alert"></p>
             </div>
@@ -93,6 +94,7 @@
                                 placeholder="sell..cash" class="dr_input">
                             <input autocomplete="off" type="number" name="sales-till" id="sales-till"
                                 placeholder="sell..till/other" class="dr_input">
+                            <input type="hidden" name="date__" id="date__" value="">
                             <input readonly type="number" name="sales-profit" id="sales-profit" placeholder="profit"
                                 class="dr_input">
                             <input class="add-product" id="add-sale-btn" type="submit" value="Add">

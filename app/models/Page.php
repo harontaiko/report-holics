@@ -1398,13 +1398,13 @@ class Page
         }
     }
 
-    public function getExpenseToday()
+    public function getExpenseToday($date)
     {
         $query = 'SELECT expense_id, expense_item, expense_cost FROM dr_expenses WHERE date_created=?';
 
         $binders = "s";
 
-        $parameters = array(date('Y-m-d', time()));
+        $parameters = array($date);
 
         $result = SelectCond($query, $binders, $parameters, $this->db);
 
@@ -1472,13 +1472,13 @@ class Page
 
     }
 
-    public function getSoldToday()
+    public function getSoldToday($date)
     {
         $query = 'SELECT sales_id, sales_item FROM dr_sales WHERE date_created=?';
 
         $binders = "s";
 
-        $parameters = array(date('Y-m-d', time()));
+        $parameters = array($date);
 
         $result = SelectCond($query, $binders, $parameters, $this->db);
 

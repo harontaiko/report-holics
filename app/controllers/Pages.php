@@ -1179,7 +1179,7 @@ class Pages extends Controller
           'cash'=>$_POST['sales-cash'], 
           'till'=>$_POST['sales-till'], 
           'profit'=>$_POST['sales-profit'],
-          'date'=>date('Y-m-d', time()), 
+          'date'=>$_POST['date__'], 
           'time'=>date('H:i:s T', time()), 
           'ip'=>get_ip_address(), 
           'creator'=>$_SESSION['user_name']
@@ -1556,11 +1556,11 @@ class Pages extends Controller
       }
     }
 
-    public function loadLatestSold()
+    public function loadLatestSold($date)
     {
       if($_SERVER['REQUEST_METHOD'] == 'GET')
       {
-        $data = ['title'=>'Daily Report', "latest" => $this->pageModel->getSoldToday()];
+        $data = ['title'=>'Daily Report', "latest" => $this->pageModel->getSoldToday($date)];
 
         $this->view('pages/loadLatestSold', $data);
       }
@@ -1572,11 +1572,11 @@ class Pages extends Controller
       }
     }
 
-    public function loadLatestExpense()
+    public function loadLatestExpense($date)
     {
       if($_SERVER['REQUEST_METHOD'] == 'GET')
       {
-        $data = ['title'=>'Daily Report', "latest" => $this->pageModel->getExpenseToday()];
+        $data = ['title'=>'Daily Report', "latest" => $this->pageModel->getExpenseToday($date)];
 
         $this->view('pages/loadLatestExpense', $data);
       }
@@ -1662,7 +1662,7 @@ class Pages extends Controller
         $data = [
           'name'=>htmlspecialchars($_POST['expense']), 
           'amount'=>htmlspecialchars($_POST['amount']),
-          'date' => date('Y-m-d', time()),
+          'date' => $_POST['date'],
           'time' => date('H:i:s T', time()),
           'creator'=>$_SESSION['user_name'],
           'ip'=>get_ip_address(),
@@ -1795,7 +1795,7 @@ class Pages extends Controller
       $cyber = [
         'cash'=>htmlspecialchars($_POST['cybercash']), 
         'till'=>htmlspecialchars($_POST['cybertill']),
-        'date' => date('Y-m-d', time()),
+        'date' => $_POST['date'],
         'time' => date('H:i:s T', time()),
         'creator'=>$_SESSION['user_name'],
         'ip'=>get_ip_address(),
@@ -1804,7 +1804,7 @@ class Pages extends Controller
       $ps = [
         'cash'=>htmlspecialchars($_POST['pscash']), 
         'till'=>htmlspecialchars($_POST['pstill']),
-        'date' => date('Y-m-d', time()),
+        'date' => $_POST['date'],
         'time' => date('H:i:s T', time()),
         'creator'=>$_SESSION['user_name'],
         'ip'=>get_ip_address(),
@@ -1813,7 +1813,7 @@ class Pages extends Controller
       $movie = [
         'cash'=>htmlspecialchars($_POST['moviecash']), 
         'till'=>htmlspecialchars($_POST['movietill']),
-        'date' => date('Y-m-d', time()),
+        'date' => $_POST['date'],
         'time' => date('H:i:s T', time()),
         'creator'=>$_SESSION['user_name'],
         'ip'=>get_ip_address(),
@@ -1857,7 +1857,7 @@ class Pages extends Controller
   public function SaveNetTotal(){
     if($_SERVER['REQUEST_METHOD']=='POST'){
       $data = [
-        'date' => date('Y-m-d', time()),
+        'date' => $_POST['date'],
         'time' => date('H:i:s T', time()),
         'creator'=>$_SESSION['user_name'],
         'ip'=>get_ip_address(),
