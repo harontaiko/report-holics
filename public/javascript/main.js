@@ -144,7 +144,7 @@ dailyreport = {
   },
   __add: {
     init: function _add() {
-      //throw confirm window b4 user reloads
+      document.getElementById("date").valueAsDate = new Date();
 
       FilterInventory();
       const cyberCash = document.getElementById("cyber-cash");
@@ -264,6 +264,14 @@ dailyreport = {
 
       //add sale
       $(document).ready(function () {
+        //load expense onto DOM
+        $("#exp").load(
+          `loadLatestExpense/${document.getElementById("date").value}`
+        );
+        //load sold i==onto DOM
+        $("#sl").load(
+          `loadLatestSold/${document.getElementById("date").value}`
+        );
         //arrange selling items alphabetically
         $("#product").append(
           $("#product option")
@@ -274,7 +282,20 @@ dailyreport = {
               return at > bt ? 1 : at < bt ? -1 : 0;
             })
         );
+        //on date change
         document.getElementById("date").addEventListener("change", () => {
+          //load expense onto DOM
+          $("#exp").load(
+            `loadLatestExpense/${document.getElementById("date").value}`
+          );
+          //load sold i==onto DOM
+          $("#sl").load(
+            `loadLatestSold/${document.getElementById("date").value}`
+          );
+        });
+
+        //on page load, since page loads with default date
+        document.addEventListener("load", (event) => {
           //load expense onto DOM
           $("#exp").load(
             `loadLatestExpense/${document.getElementById("date").value}`

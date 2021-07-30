@@ -6,7 +6,9 @@
                 <i class="mdi mdi-cash-multiple"></i>
             </span> Add Sale
         </h3>
+
     </div>
+
 
     <main>
         <h2 id="add-title">New Record</h2>
@@ -17,7 +19,7 @@
             <div class="alert alert_success" id="alert_add">
                 <p id="add-alert"></p>
             </div>
-            <input type="submit" class="save-record" value="create record">
+            <input type="submit" class="save-record btn-lg btn-gradient-info mb-4 px-2" value="create record">
             <div class="inner_grid">
                 <div class="income">
                     <h3>Income</h3>

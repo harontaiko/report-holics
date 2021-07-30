@@ -9,7 +9,8 @@
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item active" aria-current="page">
-                    <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                    <a href="<?php echo URLROOT; ?>/pages/sale" class="btn btn-block btn-lg btn-gradient-primary mt-4">+
+                        Add Sale</a>
                 </li>
             </ul>
         </nav>
