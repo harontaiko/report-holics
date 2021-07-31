@@ -272,6 +272,10 @@ dailyreport = {
         $("#sl").load(
           `loadLatestSold/${document.getElementById("date").value}`
         );
+
+        //load date
+        document.getElementById(`date__`).value =
+          document.getElementById("date").value;
         //arrange selling items alphabetically
         $("#product").append(
           $("#product option")
