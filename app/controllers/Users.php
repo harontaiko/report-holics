@@ -22,6 +22,20 @@ class Users extends Controller
       $this->view('users/index', $data);
     }
 
+    public function resetpage()
+    {
+
+      if($this->isLoggedIn())
+      {
+        redirect('pages/index');
+      }
+
+
+      $data = ['title' => 'Daily Report'];
+
+      $this->view('users/resetpage', $data);
+    }
+
     public function saveProfile()
     {
 

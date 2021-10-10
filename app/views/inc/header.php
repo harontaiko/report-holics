@@ -16,4 +16,5 @@
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/theme/css/style.css">
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/stylesheets/css/style.css">
     <title><?php echo $data['title']; ?></title>
+
 </head>

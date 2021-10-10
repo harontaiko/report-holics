@@ -42,6 +42,7 @@
                             <td style="background-color: #ffed86;">N/A</td>
                             <td style="background-color: #ffed86;">NET TOTAL</td>
                             <td style="background-color: #ffed86;">VIEW</td>
+                            <td style="background-color: #ffed86;">SHARE</td>
                             <td style="background-color: #fb0808; color:#fff;">DELETE</td>
                         </tr>
                         <tr>
@@ -62,6 +63,7 @@
                             <td style="background-color: #89909f; color:#fff;">till</td>
                             <td style="background-color: #89909f; color:#fff;">GROSS</td>
                             <td style="background-color: #89909f; color:#fff;">SEE</td>
+                            <td style="background-color: #89909f; color:#fff;">SHARE</td>
                             <td style="background-color: #fb0808; color:#fff;">DELETE</td>
                         </tr>
                         <?php while ($net = $data['net']->fetch_assoc()) :  ?>
@@ -137,6 +139,19 @@
                             </td>
                             <td><a href="<?php echo URLROOT; ?>/pages/viewEdit/<?php echo $net['sales_id']; ?>"><i
                                         title="see record" class="fas fa-eye p-2"></i></a></td>
+                            <td><a
+                                    href="https://api.whatsapp.com/send?phone=254727678517&text=movieshop%3A%20cash%20 <?php 
+                            $shopcash =  getMovieshopDate($net['date_created'], $data['db']); 
+                            echo isset($shopcash['cash']) ? number_format($shopcash['cash']) : '';
+                            ?>%2C%20till%20 <?php 
+                            $shopcash =  getMovieshopDate($net['date_created'], $data['db']); 
+                            echo isset($shopcash['till']) ? number_format($shopcash['till']) : '';
+                            ?>%20%3D%20<?php  $mvcash =  getMovieshopDate($net['date_created'], $data['db']);  $cashMv = $mvcash['cash'];  $tillMv = $mvcash['till']; echo number_format($cashMv+$tillMv); ?>%0AAccessories%3A%20<?php echo getSalesTotalCount($net['date_created'], $data['db']); ?>%20%40%20<?php echo number_format(getSaleTotal($net['date_created'], $data['db'])); ?>%20%28 
+    <?php 
+                                    $sale = getNetSales($net['date_created'], $data['db']);
+                                     while ($sl = $sale->fetch_assoc()) :  
+                                     ?><?php echo $sl['sales_item'] ?><?php endwhile ?>%29%0Aps%3A<?php $pscash =  getPsDate($net['date_created'], $data['db']); $cashps = $pscash['cash']; $tillps = $pscash['till']; echo number_format($cashps+$tillps);?>%0Acyber%3A%20<?php $cbcash =  getCyberDate($net['date_created'], $data['db']); $cashcyber = $cbcash['cash']; $tillcyber = $cbcash['till']; echo number_format($cashcyber+$tillcyber);?>%0AExpenses%3A%20<?php echo number_format(getExpenseTotal($net['date_created'], $data['db'])); ?>%0Atotal%20cash%3A<?php echo number_format($net['cash_sales']); ?>%0Atotal%20till%3A%20<?php echo number_format($net['till_sales']); ?>%0Acash%20in%20hand%3A%201500%0ANet%20income%3A%20<?php echo number_format(($net['cash_sales'] + $net['till_sales'] + getSaleTotal($net['date_created'], $data['db'])) - (getExpenseTotal($net['date_created'], $data['db']))) . '/=';?>%28excluding%20expenses%29%0A"><i
+                                        title="share on whatsapp" class="fab fa-whatsapp p-2"></i></a></td>
                             <td><a href="<?php echo URLROOT; ?>/pages/deleteRecord/<?php echo $net['sales_id']; ?>"><i
                                         title="delete record" class="fas fa-trash p-2"></i></a></td>
                         </tr>

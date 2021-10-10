@@ -8,6 +8,7 @@ class Pages extends Controller
       $this->pageModel = $this->model('Page'); 
     }
 
+
     
     public function loadInvoiceSearch($item)
     {
@@ -599,12 +600,15 @@ class Pages extends Controller
         ];
         redirect("users/index");
       } 
+     
       //get all sales data
       $net = $this->pageModel->getNetTotal();
       
       $db = $this->pageModel->getDatabaseConnection();
 
       $inventoryData = $this->pageModel->getInventoryData();
+
+
 
       $data = ['title'=>'Daily Report', "inventory" => $inventoryData, 'db'=>$db, 'net'=>$net];
 
@@ -625,6 +629,7 @@ class Pages extends Controller
         $db = $this->pageModel->getDatabaseConnection();
 
         $inventoryData = $this->pageModel->getInventoryData();
+
 
         $data = ['title'=>'Filter Report', "inventory" => $inventoryData, 'db'=>$db, 'from'=>htmlspecialchars($from), 'to'=>htmlspecialchars($to), 'shopname'=>htmlspecialchars($shopname)];
 
