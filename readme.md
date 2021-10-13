@@ -20,3 +20,7 @@ Inventory management and daily record keeping system, built on PHP OOP and Js, D
 - create user, some few links , profile & notifications
 - create user
 - profile err
+- chat widget, whastsapp share pdf
+- updates
+- print items out of stock, send thru whatsapp
+- amount left after cashout

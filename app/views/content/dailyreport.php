@@ -140,7 +140,7 @@
                             <td><a href="<?php echo URLROOT; ?>/pages/viewEdit/<?php echo $net['sales_id']; ?>"><i
                                         title="see record" class="fas fa-eye p-2"></i></a></td>
                             <td><a
-                                    href="https://api.whatsapp.com/send?phone=254727678517&text=movieshop%3A%20cash%20 <?php 
+                                    href="https://api.whatsapp.com/send?phone=254724094086&text=movieshop%3A%20cash%20 <?php 
                             $shopcash =  getMovieshopDate($net['date_created'], $data['db']); 
                             echo isset($shopcash['cash']) ? number_format($shopcash['cash']) : '';
                             ?>%2C%20till%20 <?php 

@@ -377,11 +377,11 @@ blockquote {
 }
 
 .login-err {
+  background-color: #ff4040;
+  border-radius: 5px;
+  margin: 9px 0 12px 0;
   text-align: center;
-  color: rgb(209, 31, 31);
-  font-weight: bold;
-  letter-spacing: 0.12em;
-  text-shadow: 1px -1px 0 rgb(219, 76, 76);
+  color: #fff;
 }
 
 .reset-text {
