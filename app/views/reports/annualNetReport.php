@@ -61,7 +61,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>Annual total: <?php
+                <td>Gross: <?php
                     echo number_format(getNetTotalYear( $data['db']));
                      ?></td>
             </tr>

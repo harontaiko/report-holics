@@ -61,7 +61,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>Monthly total: <?php
+                <td>Gross: <?php
                     echo number_format(getPsTotalMonth($data['db']));           
                      ?></td>
             </tr>

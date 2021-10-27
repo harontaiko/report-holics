@@ -24,3 +24,5 @@ Inventory management and daily record keeping system, built on PHP OOP and Js, D
 - updates
 - print items out of stock, send thru whatsapp
 - amount left after cashout
+- enhance search
+-

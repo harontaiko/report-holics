@@ -56,7 +56,7 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td>Annual total: <?php
+                <td>Gross: <?php
                     echo number_format(getExpenseTotalYear( $data['db']));
                      ?></td>
             </tr>

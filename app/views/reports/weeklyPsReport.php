@@ -61,7 +61,7 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td>Weekly total: <?php
+                <td>Gross: <?php
                     echo number_format(getPsTotalWeek( $data['db']));
                      ?></td>
             </tr>

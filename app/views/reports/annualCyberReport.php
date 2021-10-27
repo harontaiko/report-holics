@@ -62,7 +62,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>Annual total: <?php
+                <td>Gross: <?php
                     echo number_format(getCyberTotalYear( $data['db']));
                      ?></td>
             </tr>

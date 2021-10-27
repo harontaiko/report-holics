@@ -139,8 +139,8 @@
                             </td>
                             <td><a href="<?php echo URLROOT; ?>/pages/viewEdit/<?php echo $net['sales_id']; ?>"><i
                                         title="see record" class="fas fa-eye p-2"></i></a></td>
-                            <td><a
-                                    href="https://api.whatsapp.com/send?phone=254724094086&text=movieshop%3A%20cash%20 <?php 
+                            <td><a target="_blank"
+                                    href="https://api.whatsapp.com/send?phone=254727678517&text=movieshop%3A%20cash%20 <?php 
                             $shopcash =  getMovieshopDate($net['date_created'], $data['db']); 
                             echo isset($shopcash['cash']) ? number_format($shopcash['cash']) : '';
                             ?>%2C%20till%20 <?php 
@@ -150,11 +150,16 @@
     <?php 
                                     $sale = getNetSales($net['date_created'], $data['db']);
                                      while ($sl = $sale->fetch_assoc()) :  
-                                     ?><?php echo $sl['sales_item'] ?><?php endwhile ?>%29%0Aps%3A<?php $pscash =  getPsDate($net['date_created'], $data['db']); $cashps = $pscash['cash']; $tillps = $pscash['till']; echo number_format($cashps+$tillps);?>%0Acyber%3A%20<?php $cbcash =  getCyberDate($net['date_created'], $data['db']); $cashcyber = $cbcash['cash']; $tillcyber = $cbcash['till']; echo number_format($cashcyber+$tillcyber);?>%0AExpenses%3A%20<?php echo number_format(getExpenseTotal($net['date_created'], $data['db'])); ?>%0Atotal%20cash%3A<?php echo number_format($net['cash_sales']); ?>%0Atotal%20till%3A%20<?php echo number_format($net['till_sales']); ?>%0Acash%20in%20hand%3A%201500%0ANet%20income%3A%20<?php echo number_format(($net['cash_sales'] + $net['till_sales'] + getSaleTotal($net['date_created'], $data['db'])) - (getExpenseTotal($net['date_created'], $data['db']))) . '/=';?>%28excluding%20expenses%29%0A"><i
-                                        title="share on whatsapp" class="fab fa-whatsapp p-2"></i></a></td>
-                            <td><a href="<?php echo URLROOT; ?>/pages/deleteRecord/<?php echo $net['sales_id']; ?>"><i
-                                        title="delete record" class="fas fa-trash p-2"></i></a></td>
+                                     ?><?php echo $sl['sales_item'] ?>@<?php echo $sl['selling_price'].', ' ?><?php endwhile ?>%29%0Aps%3A<?php $pscash =  getPsDate($net['date_created'], $data['db']); $cashps = $pscash['cash']; $tillps = $pscash['till']; echo number_format($cashps+$tillps);?>%0Acyber%3A%20<?php $cbcash =  getCyberDate($net['date_created'], $data['db']); $cashcyber = $cbcash['cash']; $tillcyber = $cbcash['till']; echo number_format($cashcyber+$tillcyber);?>%0AExpenses%3A%20<?php echo number_format(getExpenseTotal($net['date_created'], $data['db'])).'/='; ?><?php $sale = getNetExpenses($net['date_created'], $data['db']);echo '('; while ($sl = $sale->fetch_assoc()) :  ?><?php echo $sl['expense_item'] ?>@<?php echo $sl['expense_cost'].', ' ?><?php endwhile ?><?php echo ')'; ?>%0Atotal%20cash%3A<?php echo number_format($net['cash_sales']); ?>%0Atotal%20till%3A%20<?php echo number_format($net['till_sales']); ?>%0Acash%20in%20hand%3A%20<?php echo 'movieshop@';  $MV =  getMovieShopDate($net['date_created'], $data['db']); $cashMOVIE = $MV['cash']; $tillMOVIE = $MV['till']; echo number_format($cashMOVIE+$tillMOVIE).', '; echo 'cyber@';  $PS =  getCyberDate($net['date_created'], $data['db']); $cashPS = $PS['cash']; $tillPS = $PS['till']; echo number_format($cashPS+$tillPS).' ,';  echo 'cyber@'; $CB =  getPsDate($net['date_created'], $data['db']); $cashCB = $CB['cash']; $tillCB = $CB['till']; echo number_format($cashCB+$tillCB); ?>%0ANet%20income%3A%20<?php echo number_format(($net['cash_sales'] + $net['till_sales'] + getSaleTotal($net['date_created'], $data['db'])) - (getExpenseTotal($net['date_created'], $data['db']))) . '/=';?>%28excluding%20expenses%29%0A"><i
+                                        title="share on whatsapp" class="fab fa-whatsapp p-2"></i></a>
+
+                            </td>
+                            <td>
+                                <a href="<?php echo URLROOT; ?>/pages/deleteRecord/<?php echo $net['sales_id']; ?>"><i
+                                        title="delete record" class="fas fa-trash p-2"></i></a>
+                            </td>
                         </tr>
+
                         <?php endwhile ?>
                     </tbody>
                     <table />

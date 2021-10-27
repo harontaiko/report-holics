@@ -57,7 +57,7 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td>Annual Sales total: <?php
+                <td>Gross: <?php
                     echo number_format(getSalesTotalYear($data['db']));           
                      ?></td>
             </tr>

@@ -57,7 +57,7 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td>Monthly Sales total: <?php
+                <td>Gross: <?php
                     echo number_format(getSalesTotalMonth($data['db']));           
                      ?></td>
             </tr>

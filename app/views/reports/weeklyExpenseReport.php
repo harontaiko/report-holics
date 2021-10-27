@@ -37,9 +37,8 @@
     <table class="table table-striped">
         <tr>
             <th>Week</th>
-            <th>Weekly Cash income(Ksh)</th>
-            <th>Weekly Till income(Ksh)</th>
-            <th>Weekly Net Total</th>
+            <th>Weekly Expense Amount</th>
+            <th>Weekly Expense Total</th>
         </tr>
 
         <?php 
@@ -59,39 +58,25 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td>Weekly total: <?php
+                <td>Gross: <?php
                     echo number_format(getExpenseTotalWeek($data['db']));           
                      ?></td>
             </tr>
         </tfoot>
     </table>
 
-    <div class="row">
-        <div class="col-md-4 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <canvas id="line-month-chart-repo-mv" style="visibility: hidden;" class="mt-4"
-                        style="height:380px; width:420px"></canvas>
-                </div>
-            </div>
+    <section id="realtime-charts">
+        <div class="line-chart-report">
+            <canvas style="visibility: hidden;" id="line-month-chart-repo-mv"
+                style="height:380px; width:420px"></canvas>
         </div>
-        <div class="col-md-4 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title"></h4>
-                    <canvas id="bar-month-chart-repo-mv" style="height:380px; width:420px"></canvas>
-                </div>
-            </div>
+        <div class="bar-chart-report">
+            <canvas id="bar-month-chart-repo-mv" style="height:380px; width:420px"></canvas>
         </div>
-        <div class="col-md-4 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title"></h4>
-                    <canvas id="pie-month-chart-repo-mv" style="height:380px; width:420px"></canvas>
-                </div>
-            </div>
+        <div class="pie-chart-report">
+            <canvas style="visibility: hidden;" id="pie-month-chart-repo-mv" style="height:380px; width:420px"></canvas>
         </div>
-    </div>
+    </section>
 </div>
 <!--line chart daily movie report-->
 <script>

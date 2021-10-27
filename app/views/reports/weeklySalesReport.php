@@ -57,7 +57,7 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td>Weekly Sales total: <?php
+                <td>Gross: <?php
                     echo number_format(getSalesTotalWeek($data['db']));           
                      ?></td>
             </tr>

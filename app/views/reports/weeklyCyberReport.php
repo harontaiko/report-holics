@@ -62,7 +62,7 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td>Weekly total: <?php
+                <td>Gross: <?php
                     echo number_format(getCyberTotalWeek($data['db']));           
                      ?></td>
             </tr>

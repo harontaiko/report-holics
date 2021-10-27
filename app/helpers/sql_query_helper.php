@@ -1053,7 +1053,7 @@ function getMostSoldItemsWeek($db)
 
 function getSalesAllWeekNet($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%U"), SUM(selling_price) AS selling, SUM(profit) AS sales_net FROM dr_sales WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%U")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%U"), SUM(selling_price) AS selling, SUM(profit) AS sales_net FROM dr_sales GROUP BY DATE_FORMAT(date_created, "%U") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_sales', $db);
 
@@ -1068,7 +1068,7 @@ function getSalesAllWeekNet($db)
 
 function getSalesTotalWeek($db)
 {
-  $query = 'SELECT SUM(selling_price) AS sales_net FROM dr_sales WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK)';
+  $query = 'SELECT SUM(selling_price) AS sales_net FROM dr_sales';
 
   $result = SelectCondFree($query, 'dr_sales', $db);
 
@@ -1087,7 +1087,7 @@ function getSalesTotalWeek($db)
 
 function getSalesDatesWeek($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%U") FROM dr_sales WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%U")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%U") FROM dr_sales GROUP BY DATE_FORMAT(date_created, "%U") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_sales', $db);
 
@@ -1103,7 +1103,7 @@ function getSalesDatesWeek($db)
 
 function getSalesProfitWeek($db)
 {
-  $query = 'SELECT SUM(profit) AS sales_net FROM dr_sales WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%U")';
+  $query = 'SELECT SUM(profit) AS sales_net FROM dr_sales GROUP BY DATE_FORMAT(date_created, "%U") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_sales', $db);
 
@@ -1118,7 +1118,7 @@ function getSalesProfitWeek($db)
 
 function getSalesWeek($db)
 {
-  $query = 'SELECT SUM(selling_price) AS sales_net FROM dr_sales WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%U")';
+  $query = 'SELECT SUM(selling_price) AS sales_net FROM dr_sales GROUP BY DATE_FORMAT(date_created, "%U") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_sales', $db);
 
@@ -1150,7 +1150,7 @@ function getMostSoldItemsMonth($db)
 
 function getSalesAllMonthNet($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%M"), SUM(profit) AS profit_net, SUM(selling_price) AS sales_net FROM dr_sales WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%M"), SUM(profit) AS profit_net, SUM(selling_price) AS sales_net FROM dr_sales GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_sales', $db);
 
@@ -1165,7 +1165,7 @@ function getSalesAllMonthNet($db)
 
 function getSalesTotalMonth($db)
 {
-  $query = 'SELECT SUM(selling_price) AS sales_net FROM dr_sales WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH)';
+  $query = 'SELECT SUM(selling_price) AS sales_net FROM dr_sales';
 
   $result = SelectCondFree($query, 'dr_sales', $db);
 
@@ -1184,7 +1184,7 @@ function getSalesTotalMonth($db)
 
 function getSalesDatesMonth($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%M") FROM dr_sales WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%M") FROM dr_sales GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_sales', $db);
 
@@ -1200,7 +1200,7 @@ function getSalesDatesMonth($db)
 
 function getSalesProfitMonth($db)
 {
-  $query = 'SELECT SUM(profit) AS sales_net FROM dr_sales WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT SUM(profit) AS sales_net FROM dr_sales GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_sales', $db);
 
@@ -1215,7 +1215,7 @@ function getSalesProfitMonth($db)
 
 function getSalesMonth($db)
 {
-  $query = 'SELECT SUM(selling_price) AS sales_net FROM dr_sales WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT SUM(selling_price) AS sales_net FROM dr_sales GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_sales', $db);
 
@@ -1230,7 +1230,7 @@ function getSalesMonth($db)
 
 function getSalesAllYearNet($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%Y"), SUM(selling_price) AS sales_net, SUM(profit) AS profit_net FROM dr_sales WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%Y"), SUM(selling_price) AS sales_net, SUM(profit) AS profit_net FROM dr_sales GROUP BY DATE_FORMAT(date_created, "%Y") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_sales', $db);
 
@@ -1245,7 +1245,7 @@ function getSalesAllYearNet($db)
 
 function getSalesTotalYear($db)
 {
-  $query = 'SELECT SUM(selling_price) AS sales_net FROM dr_sales WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR)';
+  $query = 'SELECT SUM(selling_price) AS sales_net FROM dr_sales';
 
   $result = SelectCondFree($query, 'dr_sales', $db);
 
@@ -1280,7 +1280,7 @@ function getMostSoldItemsYear($db)
 
 function getSalesDatesYear($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%Y") FROM dr_playstation WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%Y") FROM dr_playstation GROUP BY DATE_FORMAT(date_created, "%Y") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_playstation', $db);
 
@@ -1296,7 +1296,7 @@ function getSalesDatesYear($db)
 
 function getSalesProfitYear($db)
 {
-  $query = 'SELECT SUM(profit) AS sales_net FROM dr_sales WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT SUM(profit) AS sales_net FROM dr_sales GROUP BY DATE_FORMAT(date_created, "%Y") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_sales', $db);
 
@@ -1311,7 +1311,7 @@ function getSalesProfitYear($db)
 
 function getSalesYear($db)
 {
-  $query = 'SELECT SUM(selling_price) AS sales_net FROM dr_sales WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT SUM(selling_price) AS sales_net FROM dr_sales GROUP BY DATE_FORMAT(date_created, "%Y") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_sales', $db);
 
@@ -1368,7 +1368,7 @@ function getExpenseTotalA($date, $db)
 
 function getExpenseAllWeekNet($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%U"), SUM(expense_cost) AS expense_net FROM dr_expenses WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%U")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%U"), SUM(expense_cost) AS expense_net FROM dr_expenses GROUP BY DATE_FORMAT(date_created, "%U") ORDER BY expense_id';
 
   $result = SelectCondFree($query, 'dr_expenses', $db);
 
@@ -1383,7 +1383,7 @@ function getExpenseAllWeekNet($db)
 
 function getExpenseTotalWeek($db)
 {
-  $query = 'SELECT SUM(expense_cost) AS expense_net FROM dr_expenses WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK)';
+  $query = 'SELECT SUM(expense_cost) AS expense_net FROM dr_expenses';
 
   $result = SelectCondFree($query, 'dr_expenses', $db);
 
@@ -1402,7 +1402,7 @@ function getExpenseTotalWeek($db)
 
 function getExpenseDatesWeek($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%U") FROM dr_expenses WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%U")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%U") FROM dr_expenses GROUP BY DATE_FORMAT(date_created, "%U") ORDER BY expense_id';
 
   $result = SelectCondFree($query, 'dr_expenses', $db);
 
@@ -1417,7 +1417,7 @@ function getExpenseDatesWeek($db)
 
 function getExpenseThisWeek($db)
 {
-  $query = 'SELECT SUM(expense_cost) AS expense_net FROM dr_expenses WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%U")';
+  $query = 'SELECT SUM(expense_cost) AS expense_net FROM dr_expenses GROUP BY DATE_FORMAT(date_created, "%U") ORDER BY expense_id';
 
   $result = SelectCondFree($query, 'dr_expenses', $db);
 
@@ -1433,7 +1433,7 @@ function getExpenseThisWeek($db)
 
 function getExpenseAllMonthNet($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%M"), SUM(expense_cost) AS expense_net FROM dr_expenses WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%M"), SUM(expense_cost) AS expense_net FROM dr_expenses GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY expense_id';
 
   $result = SelectCondFree($query, 'dr_expenses', $db);
 
@@ -1448,7 +1448,7 @@ function getExpenseAllMonthNet($db)
 
 function getExpenseTotalMonth($db)
 {
-  $query = 'SELECT SUM(expense_cost) AS expense_net FROM dr_expenses WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH)';
+  $query = 'SELECT SUM(expense_cost) AS expense_net FROM dr_expenses';
 
   $result = SelectCondFree($query, 'dr_expenses', $db);
 
@@ -1467,7 +1467,8 @@ function getExpenseTotalMonth($db)
 
 function getExpenseDatesMonth($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%M") FROM dr_expenses WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  //$query = 'SELECT DATE_FORMAT(date_created, "%M") FROM dr_expenses WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%M") FROM dr_expenses GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY expense_id';
 
   $result = SelectCondFree($query, 'dr_expenses', $db);
 
@@ -1482,7 +1483,7 @@ function getExpenseDatesMonth($db)
 
 function getExpenseGrossMonth($db)
 {
-  $query = 'SELECT SUM(expense_cost) AS expense_net FROM dr_expenses WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT SUM(expense_cost) AS expense_net FROM dr_expenses GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY expense_id';
 
   $result = SelectCondFree($query, 'dr_expenses', $db);
 
@@ -1498,7 +1499,7 @@ function getExpenseGrossMonth($db)
 
 function getExpenseAllYearNet($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%Y"), SUM(expense_cost) AS expense_net FROM dr_expenses WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%Y"), SUM(expense_cost) AS expense_net FROM dr_expenses GROUP BY DATE_FORMAT(date_created, "%Y") ORDER BY expense_id';
 
   $result = SelectCondFree($query, 'dr_expenses', $db);
 
@@ -1513,7 +1514,7 @@ function getExpenseAllYearNet($db)
 
 function getExpenseTotalYear($db)
 {
-  $query = 'SELECT SUM(expense_cost) AS expense_net FROM dr_expenses WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR)';
+  $query = 'SELECT SUM(expense_cost) AS expense_net FROM dr_expenses';
 
   $result = SelectCondFree($query, 'dr_expenses', $db);
 
@@ -1532,7 +1533,7 @@ function getExpenseTotalYear($db)
 
 function getExpenseDatesYear($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%Y") FROM dr_expenses WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%Y") FROM dr_expenses GROUP BY DATE_FORMAT(date_created, "%Y") ORDER BY expense_id';
 
   $result = SelectCondFree($query, 'dr_expenses', $db);
 
@@ -1547,7 +1548,7 @@ function getExpenseDatesYear($db)
 
 function getExpenseGrossYear($db)
 {
-  $query = 'SELECT SUM(expense_cost) AS expense_net FROM dr_expenses WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT SUM(expense_cost) AS expense_net FROM dr_expenses GROUP BY DATE_FORMAT(date_created, "%Y") ORDER BY expense_id';
 
   $result = SelectCondFree($query, 'dr_expenses', $db);
 
@@ -1606,7 +1607,7 @@ function getNetTotalA($date, $db)
 
 function getNetAllWeekNet($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%U"), SUM(cash_sales) AS total_cash, SUM(till_sales) AS total_till, SUM(totalincome) AS net_total FROM dr_nettotal WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%U")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%U"), SUM(cash_sales) AS total_cash, SUM(till_sales) AS total_till, SUM(totalincome) AS net_total FROM dr_nettotal GROUP BY DATE_FORMAT(date_created, "%U") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_nettotal', $db);
 
@@ -1621,7 +1622,7 @@ function getNetAllWeekNet($db)
 
 function getNetTotalWeek($db)
 {
-  $query = 'SELECT SUM(totalincome) AS net_total FROM dr_nettotal WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK)';
+  $query = 'SELECT SUM(totalincome) AS net_total FROM dr_nettotal';
 
   $result = SelectCondFree($query, 'dr_nettotal', $db);
 
@@ -1640,7 +1641,7 @@ function getNetTotalWeek($db)
 
 function getNetDatesWeek($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%U") FROM dr_nettotal WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%U")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%U") FROM dr_nettotal GROUP BY DATE_FORMAT(date_created, "%U") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_nettotal', $db);
 
@@ -1655,7 +1656,7 @@ function getNetDatesWeek($db)
 
 function getNetTillWeek($db)
 {
-  $query = 'SELECT SUM(till_sales) AS net_till FROM dr_nettotal WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%U")';
+  $query = 'SELECT SUM(till_sales) AS net_till FROM dr_nettotal GROUP BY DATE_FORMAT(date_created, "%U") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_nettotal', $db);
 
@@ -1670,7 +1671,7 @@ function getNetTillWeek($db)
 
 function getNetCashWeek($db)
 {
-  $query = 'SELECT SUM(cash_sales) AS cash_total FROM dr_nettotal WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%U")';
+  $query = 'SELECT SUM(cash_sales) AS cash_total FROM dr_nettotal GROUP BY DATE_FORMAT(date_created, "%U") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_nettotal', $db);
 
@@ -1685,7 +1686,7 @@ function getNetCashWeek($db)
 
 function getNetGrossWeek($db)
 {
-  $query = 'SELECT SUM(totalincome) AS total_net FROM dr_nettotal WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%U")';
+  $query = 'SELECT SUM(totalincome) AS total_net FROM dr_nettotal GROUP BY DATE_FORMAT(date_created, "%U") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_nettotal', $db);
 
@@ -1700,7 +1701,7 @@ function getNetGrossWeek($db)
 
 function getNetAllMonthNet($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%M"), SUM(cash_sales) AS total_cash, SUM(till_sales) AS total_till, SUM(totalincome) AS net_total FROM dr_nettotal WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%M"), SUM(cash_sales) AS total_cash, SUM(till_sales) AS total_till, SUM(totalincome) AS net_total FROM dr_nettotal GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_nettotal', $db);
 
@@ -1715,7 +1716,7 @@ function getNetAllMonthNet($db)
 
 function getNetTotalMonth($db)
 {
-  $query = 'SELECT SUM(totalincome) AS totalnet FROM dr_nettotal WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH)';
+  $query = 'SELECT SUM(totalincome) AS totalnet FROM dr_nettotal';
 
   $result = SelectCondFree($query, 'dr_nettotal', $db);
 
@@ -1734,7 +1735,7 @@ function getNetTotalMonth($db)
 
 function getNetDatesMonth($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%M") FROM dr_nettotal WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%M") FROM dr_nettotal GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_nettotal', $db);
 
@@ -1749,7 +1750,7 @@ function getNetDatesMonth($db)
 
 function getNetGrossMonth($db)
 {
-  $query = 'SELECT SUM(totalincome) AS totalnet FROM dr_nettotal WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT SUM(totalincome) AS totalnet FROM dr_nettotal GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_nettotal', $db);
 
@@ -1764,7 +1765,7 @@ function getNetGrossMonth($db)
 
 function getNetCashMonth($db)
 {
-  $query = 'SELECT SUM(cash_sales) AS cash_net FROM dr_nettotal WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT SUM(cash_sales) AS cash_net FROM dr_nettotal GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_nettotal', $db);
 
@@ -1779,7 +1780,7 @@ function getNetCashMonth($db)
 
 function getNetTillMonth($db)
 {
-  $query = 'SELECT SUM(till_sales) AS till_net FROM dr_nettotal WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT SUM(till_sales) AS till_net FROM dr_nettotal GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_nettotal', $db);
 
@@ -1794,7 +1795,7 @@ function getNetTillMonth($db)
 
 function getNetAllYearNet($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%Y"), SUM(cash_sales) AS total_cash, SUM(till_sales) AS total_till, SUM(totalincome) AS net_total FROM dr_nettotal WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%Y"), SUM(cash_sales) AS total_cash, SUM(till_sales) AS total_till, SUM(totalincome) AS net_total FROM dr_nettotal GROUP BY DATE_FORMAT(date_created, "%Y") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_nettotal', $db);
 
@@ -1809,7 +1810,7 @@ function getNetAllYearNet($db)
 
 function getNetTotalYear($db)
 {
-  $query = 'SELECT SUM(totalincome) AS total_income FROM dr_nettotal WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR)';
+  $query = 'SELECT SUM(totalincome) AS total_income FROM dr_nettotal';
 
   $result = SelectCondFree($query, 'dr_nettotal', $db);
 
@@ -1828,7 +1829,7 @@ function getNetTotalYear($db)
 
 function getNetDatesYear($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%Y") FROM dr_nettotal WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%Y") FROM dr_nettotal GROUP BY DATE_FORMAT(date_created, "%Y") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_nettotal', $db);
 
@@ -1843,7 +1844,7 @@ function getNetDatesYear($db)
 
 function getNetGrossYear($db)
 {
-  $query = 'SELECT SUM(totalincome) AS totalincome FROM dr_nettotal WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT SUM(totalincome) AS totalincome FROM dr_nettotal GROUP BY DATE_FORMAT(date_created, "%Y") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_nettotal', $db);
 
@@ -1858,7 +1859,7 @@ function getNetGrossYear($db)
 
 function getNetTillYear($db)
 {
-  $query = 'SELECT SUM(till_sales) AS net_till FROM dr_nettotal WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT SUM(till_sales) AS net_till FROM dr_nettotal GROUP BY DATE_FORMAT(date_created, "%Y") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_nettotal', $db);
 
@@ -1873,7 +1874,7 @@ function getNetTillYear($db)
 
 function getNetCashYear($db)
 {
-  $query = 'SELECT SUM(cash_sales) AS net_cash FROM dr_nettotal WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT SUM(cash_sales) AS net_cash FROM dr_nettotal GROUP BY DATE_FORMAT(date_created, "%Y") ORDER BY sales_id';
 
   $result = SelectCondFree($query, 'dr_nettotal', $db);
 
@@ -1930,7 +1931,7 @@ function getPsTotalA($date, $db)
 
 function getPsAllWeekNet($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%U"), SUM(cash) AS total_cash, SUM(till) AS total_till, SUM(cash + till) AS net_total FROM dr_playstation WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%U")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%U"), SUM(cash) AS total_cash, SUM(till) AS total_till, SUM(cash + till) AS net_total FROM dr_playstation GROUP BY DATE_FORMAT(date_created, "%U") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_playstation', $db);
 
@@ -1945,7 +1946,7 @@ function getPsAllWeekNet($db)
 
 function getPsTotalWeek($db)
 {
-  $query = 'SELECT SUM(cash + till) AS ps_net FROM dr_playstation WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK)';
+  $query = 'SELECT SUM(cash + till) AS ps_net FROM dr_playstation';
 
   $result = SelectCondFree($query, 'dr_playstation', $db);
 
@@ -1964,7 +1965,7 @@ function getPsTotalWeek($db)
 
 function getPsDatesWeek($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%U") FROM dr_playstation WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%U")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%U") FROM dr_playstation GROUP BY DATE_FORMAT(date_created, "%U") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_playstation', $db);
 
@@ -1979,7 +1980,7 @@ function getPsDatesWeek($db)
 
 function getPsTillWeek($db)
 {
-  $query = 'SELECT SUM(till) AS ps_net FROM dr_playstation WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%U")';
+  $query = 'SELECT SUM(till) AS ps_net FROM dr_playstation GROUP BY DATE_FORMAT(date_created, "%U") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_playstation', $db);
 
@@ -1994,7 +1995,7 @@ function getPsTillWeek($db)
 
 function getPsCashWeek($db)
 {
-  $query = 'SELECT SUM(cash) AS ps_net FROM dr_playstation WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%U")';
+  $query = 'SELECT SUM(cash) AS ps_net FROM dr_playstation GROUP BY DATE_FORMAT(date_created, "%U") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_playstation', $db);
 
@@ -2009,7 +2010,7 @@ function getPsCashWeek($db)
 
 function getPsGrossWeek($db)
 {
-  $query = 'SELECT SUM(cash+till) AS ps_net FROM dr_playstation WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%U")';
+  $query = 'SELECT SUM(cash+till) AS ps_net FROM dr_playstation GROUP BY DATE_FORMAT(date_created, "%U") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_playstation', $db);
 
@@ -2024,7 +2025,7 @@ function getPsGrossWeek($db)
 
 function getPsAllMonthNet($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%M"), SUM(cash) AS total_cash, SUM(till) AS total_till, SUM(cash + till) AS net_total FROM dr_playstation WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%M"), SUM(cash) AS total_cash, SUM(till) AS total_till, SUM(cash + till) AS net_total FROM dr_playstation GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_playstation', $db);
 
@@ -2039,7 +2040,7 @@ function getPsAllMonthNet($db)
 
 function getPsTotalMonth($db)
 {
-  $query = 'SELECT SUM(cash + till) AS ps_net FROM dr_playstation WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH)';
+  $query = 'SELECT SUM(cash + till) AS ps_net FROM dr_playstation';
 
   $result = SelectCondFree($query, 'dr_playstation', $db);
 
@@ -2058,7 +2059,7 @@ function getPsTotalMonth($db)
 
 function getPsDatesMonth($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%M") FROM dr_playstation WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%M") FROM dr_playstation GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_playstation', $db);
 
@@ -2073,7 +2074,7 @@ function getPsDatesMonth($db)
 
 function getPsGrossMonth($db)
 {
-  $query = 'SELECT SUM(cash + till) AS ps_net FROM dr_playstation WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT SUM(cash + till) AS ps_net FROM dr_playstation GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_playstation', $db);
 
@@ -2088,7 +2089,7 @@ function getPsGrossMonth($db)
 
 function getPsCashMonth($db)
 {
-  $query = 'SELECT SUM(cash) AS ps_net FROM dr_playstation WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT SUM(cash) AS ps_net FROM dr_playstation GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_playstation', $db);
 
@@ -2103,7 +2104,7 @@ function getPsCashMonth($db)
 
 function getPsTillMonth($db)
 {
-  $query = 'SELECT SUM(till) AS ps_net FROM dr_playstation WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT SUM(till) AS ps_net FROM dr_playstation GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_playstation', $db);
 
@@ -2118,7 +2119,7 @@ function getPsTillMonth($db)
 
 function getPsAllYearNet($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%Y"), SUM(cash) AS total_cash, SUM(till) AS total_till, SUM(cash + till) AS net_total FROM dr_playstation WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%Y"), SUM(cash) AS total_cash, SUM(till) AS total_till, SUM(cash + till) AS net_total FROM dr_playstation GROUP BY DATE_FORMAT(date_created, "%Y")';
 
   $result = SelectCondFree($query, 'dr_playstation', $db);
 
@@ -2133,7 +2134,7 @@ function getPsAllYearNet($db)
 
 function getPsTotalYear($db)
 {
-  $query = 'SELECT SUM(cash + till) AS ps_net FROM dr_playstation WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR)';
+  $query = 'SELECT SUM(cash + till) AS ps_net FROM dr_playstation';
 
   $result = SelectCondFree($query, 'dr_playstation', $db);
 
@@ -2152,7 +2153,7 @@ function getPsTotalYear($db)
 
 function getPsDatesYear($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%Y") FROM dr_playstation WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%Y") FROM dr_playstation GROUP BY DATE_FORMAT(date_created, "%Y") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_playstation', $db);
 
@@ -2167,7 +2168,7 @@ function getPsDatesYear($db)
 
 function getPsGrossYear($db)
 {
-  $query = 'SELECT SUM(cash + till) AS ps_net FROM dr_playstation WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT SUM(cash + till) AS ps_net FROM dr_playstation GROUP BY DATE_FORMAT(date_created, "%Y") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_playstation', $db);
 
@@ -2182,7 +2183,7 @@ function getPsGrossYear($db)
 
 function getPsTillYear($db)
 {
-  $query = 'SELECT SUM(till) AS ps_net FROM dr_playstation WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT SUM(till) AS ps_net FROM dr_playstation GROUP BY DATE_FORMAT(date_created, "%Y") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_playstation', $db);
 
@@ -2197,7 +2198,7 @@ function getPsTillYear($db)
 
 function getPsCashYear($db)
 {
-  $query = 'SELECT SUM(cash) AS ps_net FROM dr_playstation WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT SUM(cash) AS ps_net FROM dr_playstation GROUP BY DATE_FORMAT(date_created, "%Y") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_playstation', $db);
 
@@ -2212,7 +2213,7 @@ function getPsCashYear($db)
 //////////////////////////////////////////////////////////////////cyber
 function getCyberAllYear($db)
 {
-  $query = 'SELECT cash, till, created_by, creator_ip, date_created FROM dr_cybershop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR)';
+  $query = 'SELECT cash, till, created_by, creator_ip, date_created FROM dr_cybershop';
 
   $result = SelectCondFree($query, 'dr_cybershop', $db);
 
@@ -2269,7 +2270,7 @@ function getCyberTotal($date, $db)
 
 function getCyberAllWeekNet($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%U"), SUM(cash) AS total_cash, SUM(till) AS total_till, SUM(cash + till) AS net_total FROM dr_cybershop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%U")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%U"), SUM(cash) AS total_cash, SUM(till) AS total_till, SUM(cash + till) AS net_total FROM dr_cybershop GROUP BY DATE_FORMAT(date_created, "%U") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_cybershop', $db);
 
@@ -2284,7 +2285,7 @@ function getCyberAllWeekNet($db)
 
 function getCyberTotalWeek($db)
 {
-  $query = 'SELECT SUM(cash + till) AS cyber_net FROM dr_cybershop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK)';
+  $query = 'SELECT SUM(cash + till) AS cyber_net FROM dr_cybershop';
 
   $result = SelectCondFree($query, 'dr_cybershop', $db);
 
@@ -2303,7 +2304,7 @@ function getCyberTotalWeek($db)
 
 function getCyberDatesWeek($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%U") FROM dr_cybershop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%U")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%U") FROM dr_cybershop GROUP BY DATE_FORMAT(date_created, "%U") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_cybershop', $db);
 
@@ -2318,7 +2319,7 @@ function getCyberDatesWeek($db)
 
 function getCyberTillWeek($db)
 {
-  $query = 'SELECT SUM(till) AS cyber_net FROM dr_cybershop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%U")';
+  $query = 'SELECT SUM(till) AS cyber_net FROM dr_cybershop GROUP BY DATE_FORMAT(date_created, "%U") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_cybershop', $db);
 
@@ -2333,7 +2334,7 @@ function getCyberTillWeek($db)
 
 function getCyberCashWeek($db)
 {
-  $query = 'SELECT SUM(cash) AS cyber_net FROM dr_cybershop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%U")';
+  $query = 'SELECT SUM(cash) AS cyber_net FROM dr_cybershop GROUP BY DATE_FORMAT(date_created, "%U") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_cybershop', $db);
 
@@ -2348,7 +2349,7 @@ function getCyberCashWeek($db)
 
 function getCyberGrossWeek($db)
 {
-  $query = 'SELECT SUM(cash+till) AS cyber_net FROM dr_cybershop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%U")';
+  $query = 'SELECT SUM(cash+till) AS cyber_net FROM dr_cybershop GROUP BY DATE_FORMAT(date_created, "%U") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_cybershop', $db);
 
@@ -2363,7 +2364,7 @@ function getCyberGrossWeek($db)
 
 function getCyberAllMonthNet($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%M"), SUM(cash) AS total_cash, SUM(till) AS total_till, SUM(cash + till) AS net_total FROM dr_cybershop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%M"), SUM(cash) AS total_cash, SUM(till) AS total_till, SUM(cash + till) AS net_total FROM dr_cybershop GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_cybershop', $db);
 
@@ -2378,7 +2379,7 @@ function getCyberAllMonthNet($db)
 
 function getCyberTotalMonth($db)
 {
-  $query = 'SELECT SUM(cash + till) AS cyber_net FROM dr_cybershop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH)';
+  $query = 'SELECT SUM(cash + till) AS cyber_net FROM dr_cybershop';
 
   $result = SelectCondFree($query, 'dr_cybershop', $db);
 
@@ -2397,7 +2398,7 @@ function getCyberTotalMonth($db)
 
 function getCyberDatesMonth($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%M") FROM dr_cybershop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%M") FROM dr_cybershop GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_cybershop', $db);
 
@@ -2412,7 +2413,7 @@ function getCyberDatesMonth($db)
 
 function getCyberGrossMonth($db)
 {
-  $query = 'SELECT SUM(cash + till) AS cyber_net FROM dr_cybershop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT SUM(cash + till) AS cyber_net FROM dr_cybershop GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_cybershop', $db);
 
@@ -2427,7 +2428,7 @@ function getCyberGrossMonth($db)
 
 function getCyberCashMonth($db)
 {
-  $query = 'SELECT SUM(cash) AS cyber_net FROM dr_cybershop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT SUM(cash) AS cyber_net FROM dr_cybershop GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_cybershop', $db);
 
@@ -2442,7 +2443,7 @@ function getCyberCashMonth($db)
 
 function getCyberTillMonth($db)
 {
-  $query = 'SELECT SUM(till) AS cyber_net FROM dr_cybershop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT SUM(till) AS cyber_net FROM dr_cybershop GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_cybershop', $db);
 
@@ -2457,7 +2458,7 @@ function getCyberTillMonth($db)
 
 function getCyberAllYearNet($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%Y"), SUM(cash) AS total_cash, SUM(till) AS total_till, SUM(cash + till) AS net_total FROM dr_cybershop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%Y"), SUM(cash) AS total_cash, SUM(till) AS total_till, SUM(cash + till) AS net_total FROM dr_cybershop GROUP BY DATE_FORMAT(date_created, "%Y") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_cybershop', $db);
 
@@ -2472,7 +2473,7 @@ function getCyberAllYearNet($db)
 
 function getCyberTotalYear($db)
 {
-  $query = 'SELECT SUM(cash + till) AS cyber_net FROM dr_cybershop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR)';
+  $query = 'SELECT SUM(cash + till) AS cyber_net FROM dr_cybershop';
 
   $result = SelectCondFree($query, 'dr_cybershop', $db);
 
@@ -2491,7 +2492,7 @@ function getCyberTotalYear($db)
 
 function getCyberDatesYear($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%Y") FROM dr_cybershop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%Y") FROM dr_cybershop GROUP BY DATE_FORMAT(date_created, "%Y") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_cybershop', $db);
 
@@ -2506,7 +2507,7 @@ function getCyberDatesYear($db)
 
 function getCyberGrossYear($db)
 {
-  $query = 'SELECT SUM(cash + till) AS cyber_net FROM dr_cybershop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT SUM(cash + till) AS cyber_net FROM dr_cybershop GROUP BY DATE_FORMAT(date_created, "%Y") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_cybershop', $db);
 
@@ -2521,7 +2522,7 @@ function getCyberGrossYear($db)
 
 function getCyberTillYear($db)
 {
-  $query = 'SELECT SUM(till) AS cyber_net FROM dr_cybershop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT SUM(till) AS cyber_net FROM dr_cybershop GROUP BY DATE_FORMAT(date_created, "%Y") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_cybershop', $db);
 
@@ -2536,7 +2537,7 @@ function getCyberTillYear($db)
 
 function getCyberCashYear($db)
 {
-  $query = 'SELECT SUM(cash) AS cyber_net FROM dr_cybershop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT SUM(cash) AS cyber_net FROM dr_cybershop GROUP BY DATE_FORMAT(date_created, "%Y") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_cybershop', $db);
 
@@ -2616,7 +2617,7 @@ function getMovieshopAllYear($db)
 
 function getMovieshopAllMonthNet($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%M"), SUM(cash) AS total_cash, SUM(till) AS total_till, SUM(cash + till) AS net_total FROM dr_movieshop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%M"), SUM(cash) AS total_cash, SUM(till) AS total_till, SUM(cash + till) AS net_total FROM dr_movieshop GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_movieshop', $db);
 
@@ -2631,7 +2632,7 @@ function getMovieshopAllMonthNet($db)
 
 function getMovieshopAllWeekNet($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%u"), SUM(cash) AS total_cash, SUM(till) AS total_till, SUM(cash + till) AS net_total FROM dr_movieshop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%u")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%u"), SUM(cash) AS total_cash, SUM(till) AS total_till, SUM(cash + till) AS net_total FROM dr_movieshop GROUP BY DATE_FORMAT(date_created, "%u") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_movieshop', $db);
 
@@ -2646,7 +2647,7 @@ function getMovieshopAllWeekNet($db)
 
 function getMovieshopAllYearNet($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%Y"), SUM(cash) AS total_cash, SUM(till) AS total_till, SUM(cash + till) AS net_total FROM dr_movieshop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%Y"), SUM(cash) AS total_cash, SUM(till) AS total_till, SUM(cash + till) AS net_total FROM dr_movieshop GROUP BY DATE_FORMAT(date_created, "%Y") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_movieshop', $db);
 
@@ -2661,7 +2662,7 @@ function getMovieshopAllYearNet($db)
 
 function getMovieshopTotalYear($db)
 {
-  $query = 'SELECT SUM(cash + till) AS movieshop_net FROM dr_movieshop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR)';
+  $query = 'SELECT SUM(cash + till) AS movieshop_net FROM dr_movieshop';
 
   $result = SelectCondFree($query, 'dr_movieshop', $db);
 
@@ -2680,7 +2681,7 @@ function getMovieshopTotalYear($db)
 
 function getMovieshopTotalWeek($db)
 {
-  $query = 'SELECT SUM(cash + till) AS movieshop_net FROM dr_movieshop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK)';
+  $query = 'SELECT SUM(cash + till) AS movieshop_net FROM dr_movieshop';
 
   $result = SelectCondFree($query, 'dr_movieshop', $db);
 
@@ -2699,7 +2700,7 @@ function getMovieshopTotalWeek($db)
 
 function getMovieshopTotalMonth($db)
 {
-  $query = 'SELECT SUM(cash + till) AS movieshop_net FROM dr_movieshop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH)';
+  $query = 'SELECT SUM(cash + till) AS movieshop_net FROM dr_movieshop';
 
   $result = SelectCondFree($query, 'dr_movieshop', $db);
 
@@ -2718,7 +2719,7 @@ function getMovieshopTotalMonth($db)
 
 function getMovieshopDatesMonth($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%M") FROM dr_movieshop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%M") FROM dr_movieshop GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_movieshop', $db);
 
@@ -2733,7 +2734,7 @@ function getMovieshopDatesMonth($db)
 
 function getMovieshopDatesWeek($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%u") FROM dr_movieshop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%u")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%u") FROM dr_movieshop GROUP BY DATE_FORMAT(date_created, "%u") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_movieshop', $db);
 
@@ -2748,7 +2749,7 @@ function getMovieshopDatesWeek($db)
 
 function getMovieshopDatesYear($db)
 {
-  $query = 'SELECT DATE_FORMAT(date_created, "%Y") FROM dr_movieshop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT DATE_FORMAT(date_created, "%Y") FROM dr_movieshop GROUP BY DATE_FORMAT(date_created, "%Y") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_movieshop', $db);
 
@@ -2763,7 +2764,7 @@ function getMovieshopDatesYear($db)
 
 function getMovieshopCashMonth($db)
 {
-  $query = 'SELECT SUM(cash) AS movieshop_net FROM dr_movieshop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT SUM(cash) AS movieshop_net FROM dr_movieshop GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_movieshop', $db);
 
@@ -2778,7 +2779,7 @@ function getMovieshopCashMonth($db)
 
 function getMovieshopTillMonth($db)
 {
-  $query = 'SELECT SUM(till) AS movieshop_net FROM dr_movieshop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT SUM(till) AS movieshop_net FROM dr_movieshop GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_movieshop', $db);
 
@@ -2793,7 +2794,7 @@ function getMovieshopTillMonth($db)
 
 function getMovieshopGrossYear($db)
 {
-  $query = 'SELECT SUM(cash + till) AS movieshop_net FROM dr_movieshop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT SUM(cash + till) AS movieshop_net FROM dr_movieshop GROUP BY DATE_FORMAT(date_created, "%Y") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_movieshop', $db);
 
@@ -2808,7 +2809,7 @@ function getMovieshopGrossYear($db)
 
 function getMovieshopGrossWeek($db)
 {
-  $query = 'SELECT SUM(cash+till) AS movieshop_net FROM dr_movieshop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%u")';
+  $query = 'SELECT SUM(cash+till) AS movieshop_net FROM dr_movieshop GROUP BY DATE_FORMAT(date_created, "%u") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_movieshop', $db);
 
@@ -2823,7 +2824,7 @@ function getMovieshopGrossWeek($db)
 
 function getMovieshopCashWeek($db)
 {
-  $query = 'SELECT SUM(cash) AS movieshop_net FROM dr_movieshop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%u")';
+  $query = 'SELECT SUM(cash) AS movieshop_net FROM dr_movieshop GROUP BY DATE_FORMAT(date_created, "%u") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_movieshop', $db);
 
@@ -2838,7 +2839,7 @@ function getMovieshopCashWeek($db)
 
 function getMovieshopTillWeek($db)
 {
-  $query = 'SELECT SUM(till) AS movieshop_net FROM dr_movieshop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK) GROUP BY DATE_FORMAT(date_created, "%u")';
+  $query = 'SELECT SUM(till) AS movieshop_net FROM dr_movieshop GROUP BY DATE_FORMAT(date_created, "%u") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_movieshop', $db);
 
@@ -2853,7 +2854,7 @@ function getMovieshopTillWeek($db)
 
 function getMovieshopTillYear($db)
 {
-  $query = 'SELECT SUM(till) AS movieshop_net FROM dr_movieshop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT SUM(till) AS movieshop_net FROM dr_movieshop GROUP BY DATE_FORMAT(date_created, "%Y") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_movieshop', $db);
 
@@ -2868,7 +2869,7 @@ function getMovieshopTillYear($db)
 
 function getMovieshopCashYear($db)
 {
-  $query = 'SELECT SUM(cash) AS movieshop_net FROM dr_movieshop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 YEAR) GROUP BY DATE_FORMAT(date_created, "%Y")';
+  $query = 'SELECT SUM(cash) AS movieshop_net FROM dr_movieshop GROUP BY DATE_FORMAT(date_created, "%Y") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_movieshop', $db);
 
@@ -2883,7 +2884,7 @@ function getMovieshopCashYear($db)
 
 function getMovieshopGrossMonth($db)
 {
-  $query = 'SELECT SUM(cash + till) AS movieshop_net FROM dr_movieshop WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH) GROUP BY DATE_FORMAT(date_created, "%M")';
+  $query = 'SELECT SUM(cash + till) AS movieshop_net FROM dr_movieshop GROUP BY DATE_FORMAT(date_created, "%M") ORDER BY record_id';
 
   $result = SelectCondFree($query, 'dr_movieshop', $db);
 
