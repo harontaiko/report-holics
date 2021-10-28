@@ -60,7 +60,7 @@
             <div class="card bg-gradient-success card-img-holder text-white">
                 <div class="card-body">
 
-                    <h4 class="font-weight-normal mb-3">Tota Income <i
+                    <h4 class="font-weight-normal mb-3">Total Income <i
                             class="mdi mdi-cash-usd mdi-24px float-right"></i>
                     </h4>
                     <h2 class="mb-5">Ksh <?php echo number_format($data['row']['0']['incometotal']); ?></h2>

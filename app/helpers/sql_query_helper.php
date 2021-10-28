@@ -1622,7 +1622,7 @@ function getNetAllWeekNet($db)
 
 function getNetTotalWeek($db)
 {
-  $query = 'SELECT SUM(totalincome) AS net_total FROM dr_nettotal';
+  $query = 'SELECT SUM(totalincome) AS net_total FROM dr_nettotal WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK)';
 
   $result = SelectCondFree($query, 'dr_nettotal', $db);
 

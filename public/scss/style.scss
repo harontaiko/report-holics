@@ -191,4 +191,22 @@ $pulse-duration: 750ms;
   margin-top: 13px;
 }
 
+#clock {
+  font-family: "Share Tech Mono", monospace;
+  color: #ffffff;
+  text-align: center;
+  color: #daf6ff;
+  text-shadow: 0 0 20px rgba(10, 175, 230, 1), 0 0 20px rgba(10, 175, 230, 0);
+  .time {
+    letter-spacing: 0.05em;
+    font-size: 24px;
+    margin-top: 13px;
+    color: #200e08;
+  }
+  .date {
+    letter-spacing: 0.1em;
+    font-size: 24px;
+  }
+}
+
 @import "_old.scss";

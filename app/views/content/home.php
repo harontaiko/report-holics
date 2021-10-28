@@ -1,5 +1,9 @@
 <div class="content-wrapper">
-
+    <!--     <div id="clock">
+        <p class="date">{{ date }}</p>
+        <p class="time">{{ time }}</p>
+        <p class="text">DIGITAL CLOCK with Vue.js</p>
+    </div> -->
     <div class="page-header">
         <h3 class="page-title">
             <span class="page-title-icon bg-gradient-primary text-white mr-2">

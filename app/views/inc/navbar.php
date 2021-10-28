@@ -40,7 +40,12 @@
                             <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
                         </a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item">
+                        <div id="clock">
+                            <p class="time">{{ time }}</p>
+                        </div>
+                    </li>
+                    <!--                     <li class="nav-item dropdown">
                         <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
                             data-toggle="dropdown">
                             <i class="mdi mdi-bell-outline"></i>
@@ -67,7 +72,7 @@
                             <div class="dropdown-divider"></div>
                             <h6 class="p-3 mb-0 text-center">1 notification</h6>
                         </div>
-                    </li>
+                    </li> -->
                     <li class="nav-item nav-logout d-none d-lg-block">
                         <a class="nav-link" href="<?php echo URLROOT; ?>/users/logout">
                             <i class="mdi mdi-power"></i>

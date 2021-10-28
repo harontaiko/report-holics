@@ -26,6 +26,7 @@
 <?php if(strpos($_SERVER['REQUEST_URI'], 'pages/index') !== false): ?>
 <script src="<?php echo URLROOT; ?>/public/theme/vendors/chart.js/Chart.min.js"></script>
 <?php endif ?>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
 <script src="<?php echo URLROOT; ?>/public/theme/js/off-canvas.js"></script>
 <script src="<?php echo URLROOT; ?>/public/theme/js/hoverable-collapse.js"></script>
 <script src="<?php echo URLROOT; ?>/public/theme/js/misc.js"></script>
