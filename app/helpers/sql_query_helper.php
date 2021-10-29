@@ -3619,3 +3619,112 @@ function getCashoutTotal($shopname, $db)
     }
   }
 }
+
+function getThisWeekSales($db){
+  $query = 'SELECT SUM(selling_price) AS sales_net FROM dr_sales WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK)';
+
+  $result = SelectCondFree($query, 'dr_sales', $db);
+
+  $row = $result->get_result();
+
+  $rowItem = $row->fetch_assoc();
+
+  $totalmovie = isset($rowItem['sales_net']) ? $rowItem['sales_net'] : 0;
+
+  try {
+      return $totalmovie;
+  } catch (Error $e) {
+      return false;
+  } 
+}
+
+function getLastWeekSales($db){
+  $query = 'SELECT SUM(selling_price) AS sales_net FROM dr_sales WHERE date_created >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY AND date_created < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY';
+
+  $result = SelectCondFree($query, 'dr_sales', $db);
+
+  $row = $result->get_result();
+
+  $rowItem = $row->fetch_assoc();
+
+  $totalmovie = isset($rowItem['sales_net']) ? $rowItem['sales_net'] : 0;
+
+  try {
+      return $totalmovie;
+  } catch (Error $e) {
+      return false;
+  } 
+}
+
+function getThisWeekIncome($db){
+  $query = 'SELECT SUM(totalincome) AS net_total FROM dr_nettotal WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 WEEK)';
+
+  $result = SelectCondFree($query, 'dr_nettotal', $db);
+
+  $row = $result->get_result();
+
+  $rowItem = $row->fetch_assoc();
+
+  $totalweekly = isset($rowItem['net_total']) ? $rowItem['net_total'] : 0;
+
+  try {
+      return $totalweekly;
+  } catch (Error $e) {
+      return false;
+  } 
+}
+
+function getLastWeekIncome($db){
+  $query = 'SELECT SUM(totalincome) AS net_total FROM dr_nettotal WHERE date_created >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY AND date_created < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY';
+
+  $result = SelectCondFree($query, 'dr_nettotal', $db);
+
+  $row = $result->get_result();
+
+  $rowItem = $row->fetch_assoc();
+
+  $totalweekly = isset($rowItem['net_total']) ? $rowItem['net_total'] : 0;
+
+  try {
+      return $totalweekly;
+  } catch (Error $e) {
+      return false;
+  } 
+}
+
+function getThisMonthGross($db){
+  $query = 'SELECT SUM(totalincome) AS net_total FROM dr_nettotal WHERE date_created > DATE_SUB(NOW(), INTERVAL 1 MONTH)';
+
+  $result = SelectCondFree($query, 'dr_nettotal', $db);
+
+  $row = $result->get_result();
+
+  $rowItem = $row->fetch_assoc();
+
+  $totalmonthly = isset($rowItem['net_total']) ? $rowItem['net_total'] : 0;
+
+  try {
+      return $totalmonthly;
+  } catch (Error $e) {
+      return false;
+  } 
+}
+
+function getLastMonthGross($db){
+  $query = 'SELECT SUM(totalincome) AS net_total FROM dr_nettotal WHERE YEAR(date_created) = YEAR(CURRENT_DATE - INTERVAL 1 MONTH)
+  AND MONTH(date_created) = MONTH(CURRENT_DATE - INTERVAL 1 MONTH)';
+
+  $result = SelectCondFree($query, 'dr_nettotal', $db);
+
+  $row = $result->get_result();
+
+  $rowItem = $row->fetch_assoc();
+
+  $totalmonthly = isset($rowItem['net_total']) ? $rowItem['net_total'] : 0;
+
+  try {
+      return $totalmonthly;
+  } catch (Error $e) {
+      return false;
+  } 
+}

@@ -24,11 +24,27 @@
             <div class="card bg-gradient-danger card-img-holder text-white">
                 <div class="card-body">
 
-                    <h4 class="font-weight-normal mb-3">Weekly Sales <i
+                    <h4 class="font-weight-normal mb-3">This Week Sales <i
                             class="mdi mdi-chart-line mdi-24px float-right"></i>
                     </h4>
-                    <h2 class="mb-5">Ksh <?php echo number_format(getSalesTotalWeek($data['db'])); ?></h2>
-                    <!-- <h6 class="card-text">Increased by 60%</h6> -->
+                    <h2 class="mb-5">Ksh <?php echo number_format(getThisWeekSales($data['db'])); ?></h2>
+                    <h6 class="card-text">
+                        <?php
+                        
+                        $old = getLastWeekSales($data['db']);
+                        $new = getThisWeekSales($data['db']);
+
+                        $diff = $old - $new;
+                        $percent = ($diff / $old) * 100;
+
+                        if($diff > 0){
+                            echo 'Decreased by '.truncate(abs($percent), 1).'%';
+                        }else{
+                            echo 'Increased by '.truncate(abs($percent), 1).'%';
+                        }
+                        
+                        ?>
+                    </h6>
                 </div>
             </div>
         </div>
@@ -36,11 +52,27 @@
             <div class="card bg-gradient-info card-img-holder text-white">
                 <div class="card-body">
 
-                    <h4 class="font-weight-normal mb-3">Weekly Income <i
+                    <h4 class="font-weight-normal mb-3">This Week's Income <i
                             class="mdi mdi-cash-multiple mdi-24px float-right"></i>
                     </h4>
-                    <h2 class="mb-5">Ksh <?php echo number_format(getNetTotalWeek($data['db'])); ?></h2>
-                    <!-- <h6 class="card-text">Decreased by 10%</h6> -->
+                    <h2 class="mb-5">Ksh <?php echo number_format(getThisWeekIncome($data['db'])); ?></h2>
+                    <h6 class="card-text">
+                        <?php
+                        
+                        $old = getLastWeekIncome($data['db']);
+                        $new = getThisWeekIncome($data['db']);
+
+                        $diff = $old - $new;
+                        $percent = ($diff / $old) * 100;
+
+                        if($diff > 0){
+                            echo 'Decreased by '.truncate(abs($percent), 1).'%';
+                        }else{
+                            echo 'Increased by '.truncate(abs($percent), 1).'%';
+                        }
+                        
+                        ?>
+                    </h6>
                 </div>
             </div>
         </div>
@@ -48,11 +80,27 @@
             <div class="card bg-gradient-success card-img-holder text-white">
                 <div class="card-body">
 
-                    <h4 class="font-weight-normal mb-3">Current Gross <i
+                    <h4 class="font-weight-normal mb-3">This Month's Current Gross <i
                             class="mdi mdi-cash-usd mdi-24px float-right"></i>
                     </h4>
-                    <h2 class="mb-5">Ksh <?php echo number_format(getNetTotalYear($data['db'])); ?></h2>
-                    <!-- <h6 class="card-text">Increased by 5%</h6> -->
+                    <h2 class="mb-5">Ksh <?php echo number_format(getThisMonthGross($data['db'])); ?></h2>
+                    <h6 class="card-text">
+                        <?php
+                        
+                        $old = getLastMonthGross($data['db']);
+                        $new = getThisMonthGross($data['db']);
+
+                        $diff = $old - $new;
+                        $percent = ($diff / $old) * 100;
+
+                        if($diff > 0){
+                            echo 'Decreased by '.truncate(abs($percent), 1).'%';
+                        }else{
+                            echo 'Increased by '.truncate(abs($percent), 1).'%';
+                        }
+                        
+                        ?>
+                    </h6>
                 </div>
             </div>
         </div>
