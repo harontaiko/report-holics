@@ -18,6 +18,28 @@
                         <a class="nav-link dropdown-toggle" id="profileDropdown"
                             href="<?php echo URLROOT; ?>/users/profile" data-toggle="dropdown" aria-expanded="false">
                             <div class="nav-profile-img">
+                                <img src="<?php echo URLROOT; ?>/public/images/icons/mpesa.png" alt="image">
+                                <span class="availability-status online"></span>
+                            </div>
+                            <div class="nav-profile-text">
+                                <p class="mb-1 text-black">
+                                    Dailyhackstore Till
+                                </p>
+                            </div>
+                        </a>
+                        <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                            <a class="dropdown-item" href="<?php echo URLROOT; ?>/mpesa/transactions">
+                                <i class="mdi mdi-rotate-3d mr-2 text-success"></i> transactions </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="<?php echo URLROOT; ?>/mpesa/statement">
+                                <i class="mdi mdi-receipt mr-2 text-primary"></i>
+                                print statement </a>
+                        </div>
+                    </li>
+                    <li class="nav-item nav-profile dropdown">
+                        <a class="nav-link dropdown-toggle" id="profileDropdown"
+                            href="<?php echo URLROOT; ?>/users/profile" data-toggle="dropdown" aria-expanded="false">
+                            <div class="nav-profile-img">
                                 <img src="<?php echo URLROOT; ?>/public/images/images/avatar.png" alt="image">
                                 <span class="availability-status online"></span>
                             </div>

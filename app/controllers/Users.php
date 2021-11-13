@@ -17,7 +17,9 @@ class Users extends Controller
       }
 
 
-      $data = ['title' => 'Daily Report'];
+      $db = $this->userModel->getDatabaseConnection();
+
+      $data = ['title' => 'Daily Report', 'db'=>$db];
 
       $this->view('users/index', $data);
     }

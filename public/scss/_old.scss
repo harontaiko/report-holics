@@ -361,11 +361,8 @@ blockquote {
   color: #ef3b3a;
 }
 .login {
-  background: #76b852; /* fallback for old browsers */
-  background: -webkit-linear-gradient(right, #76b852, #8dc26f);
-  background: -moz-linear-gradient(right, #76b852, #8dc26f);
-  background: -o-linear-gradient(right, #76b852, #8dc26f);
-  background: linear-gradient(to left, #76b852, #8dc26f);
+  background: #31bbf9; /* fallback for old browsers */
+  background: linear-gradient(to left, #31bbf9, #31bbf9);
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -525,6 +522,7 @@ blockquote {
   line-height: 24px;
   cursor: pointer;
   margin-right: 5%;
+  margin-top: -8rem;
   outline: none;
   border: none;
 }

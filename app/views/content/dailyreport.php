@@ -108,7 +108,7 @@
                                      while ($sl = $sale->fetch_assoc()) :  
                                      ?>
                                     <option value="<?php echo $sl['sales_item'] ?>"><?php echo $sl['sales_item'] ?>
-                                        <?php echo number_format($sl['selling_price']) ?></option>
+                                        <?php echo number_format(floatval($sl['selling_price'])) ?></option>
                                     <?php endwhile ?>
                                 </select>
                             </td>

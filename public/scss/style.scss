@@ -209,4 +209,8 @@ $pulse-duration: 750ms;
   }
 }
 
+.dropdown .dropdown-menu .dropdown-item:hover {
+  color: #111 !important;
+}
+
 @import "_old.scss";

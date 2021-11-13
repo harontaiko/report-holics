@@ -17,6 +17,7 @@
                 <img src="<?php echo URLROOT; ?>/public/images/images/dailyhackstore.ico" class="img-fluid auth-logo">
                 <p class="login-err"><?php echo isset($data['err']) ? $data['err'] : ''; ?></p>
                 <div class="form-group">
+
                     <input name="username" class="form-control form-control-lg" type="text" placeholder="username"
                         required value="<?php echo isset($data['username']) ? $data['username'] : ''; ?>" />
                 </div>

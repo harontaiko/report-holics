@@ -485,6 +485,21 @@ function LoadUsers($usertable, $db){
   }
 }
 
+function getAllRegisteredUsers($db){
+    //mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+    $query = 'SELECT * FROM dr_user WHERE `user_id` != 3';
+
+    $result = SelectCondFree($query, 'dr_user', $db);
+
+    $row = $result->get_result();
+
+    try {
+        return $row;
+    } catch (Error $e) {
+        return false;
+    } 
+}
+
 //verify mail and token
 function verifyTokenAndmail($table, $email, $db)
 {
